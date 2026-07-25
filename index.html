@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eva Earning - Demo</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Splash -->
+
+<div id="splash">
+
+<div class="logoBox">
+
+<h1>Eva Earning</h1>
+
+<p>Demo Mode</p>
+
+<div class="loader">
+
+<div class="loaderBar"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Main App -->
+
+<div id="app" class="hidden">
+
+<header>
+
+<div>
+
+<h2>Eva Earning</h2>
+
+<span class="demoBadge">
+DEMO MODE
+</span>
+
+</div>
+
+<div class="headerButtons">
+
+<button id="themeBtn">
+🌙
+</button>
+
+<button id="loginBtn">
+Login
+</button>
+
+</div>
+
+</header>
+
+<!-- Notification -->
+
+<div class="ticker">
+
+<div id="tickerText">
+
+Loading...
+
+</div>
+
+</div>
+
+<!-- Home -->
+
+<section id="homePage" class="page active">
+
+<div class="welcomeCard">
+
+<h2>Welcome</h2>
+
+<p>
+Rewards and balances are simulated.
+</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Current Plan</h3>
+
+<h2 id="planName">
+FREE
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Wallet</h3>
+
+<h2 id="wallet">
+PKR 0
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Today's Reward</h3>
+
+<h2 id="todayReward">
+PKR 0
+</h2>
+
+</div>
+
+<div class="card">
+
+<h3>Ads Remaining</h3>
+
+<h2 id="adsLeft">
+5
+</h2>
+
+</div>
+
+</div>
+
+<div class="adCard">
+
+<h3>
+Reward Per Ad
+</h3>
+
+<h1>
+PKR 100
+</h1>
+
+<button id="watchAd">
+
+Watch Demo Ad
+
+</button>
+
+<div id="timer">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- VIP -->
+
+<section id="vipPage" class="page">
+
+<h2>VIP Plans</h2>
+
+<div class="vipCard">
+
+<h3>VIP 1</h3>
+
+<p>PKR 2000</p>
+
+<button class="buyPlan">
+
+Buy Plan
+
+</button>
+
+</div>
+
+<div class="vipCard">
+
+<h3>VIP 2</h3>
+
+<p>PKR 3000</p>
+
+<button class="buyPlan">
+
+Buy Plan
+
+</button>
+
+</div>
+
+<div class="vipCard">
+
+<h3>VIP 3</h3>
+
+<p>PKR 5000</p>
+
+<button class="buyPlan">
+
+Buy Plan
+
+</button>
+
+</div>
+
+</section><!-- Withdraw -->
+
+<section id="withdrawPage" class="page">
+
+<h2>Withdraw</h2>
+
+<div class="withdrawCard">
+
+<select id="withdrawMethod">
+
+<option>EasyPaisa</option>
+
+<option>JazzCash</option>
+
+</select>
+
+<input
+type="text"
+id="withdrawName"
+placeholder="Full Name">
+
+<input
+type="tel"
+id="withdrawPhone"
+placeholder="Phone Number">
+
+<input
+type="number"
+id="withdrawAmount"
+placeholder="Amount">
+
+<p class="demoText">
+
+FREE Plan Daily Limit:
+PKR 50 (Demo)
+
+</p>
+
+<button id="withdrawBtn">
+
+Submit Request
+
+</button>
+
+</div>
+
+</section>
+
+<!-- Profile -->
+
+<section id="profilePage" class="page">
+
+<div class="profileCard">
+
+<div class="avatar">
+
+👤
+
+</div>
+
+<h2 id="profileName">
+
+Guest
+
+</h2>
+
+<p id="profileEmail">
+
+demo@example.com
+
+</p>
+
+<div class="profileInfo">
+
+<div>
+
+<span>Plan</span>
+
+<h3 id="profilePlan">
+
+FREE
+
+</h3>
+
+</div>
+
+<div>
+
+<span>Balance</span>
+
+<h3 id="profileBalance">
+
+PKR 0
+
+</h3>
+
+</div>
+
+<div>
+
+<span>Ads Watched</span>
+
+<h3 id="adsWatched">
+
+0
+
+</h3>
+
+</div>
+
+<div>
+
+<span>Total Rewards</span>
+
+<h3 id="totalRewards">
+
+PKR 0
+
+</h3>
+
+</div>
+
+</div>
+
+<button id="logoutBtn">
+
+Logout
+
+</button>
+
+</div>
+
+</section>
+
+<!-- Support -->
+
+<section id="supportPage" class="page">
+
+<div class="supportCard">
+
+<h2>
+
+Need Help?
+
+</h2>
+
+<p>
+
+WhatsApp Support
+
+</p>
+
+<a
+href="https://wa.me/923162423759"
+target="_blank">
+
+Contact Support
+
+</a>
+
+</div>
+
+</section><!-- Bottom Navigation -->
+
+<nav class="bottomNav">
+
+<button class="navBtn active" data-page="homePage">
+🏠
+<span>Home</span>
+</button>
+
+<button class="navBtn" data-page="vipPage">
+💎
+<span>VIP</span>
+</button>
+
+<button class="navBtn" data-page="withdrawPage">
+💰
+<span>Withdraw</span>
+</button>
+
+<button class="navBtn" data-page="profilePage">
+👤
+<span>Profile</span>
+</button>
+
+<button class="navBtn" data-page="supportPage">
+💬
+<span>Support</span>
+</button>
+
+</nav>
+
+<!-- Login Popup -->
+
+<div id="loginModal" class="modal">
+
+<div class="modalContent">
+
+<h2>Login</h2>
+
+<input
+type="text"
+id="username"
+placeholder="Enter Name">
+
+<input
+type="email"
+id="email"
+placeholder="Enter Email">
+
+<button id="loginSubmit">
+
+Continue
+
+</button>
+
+<button id="closeLogin">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Payment Popup -->
+
+<div id="paymentModal" class="modal">
+
+<div class="modalContent">
+
+<h2>VIP Payment</h2>
+
+<p><b>Bank</b><br>
+Telenor Microfinance Bank</p>
+
+<p><b>Account Name</b><br>
+Shehroz</p>
+
+<p><b>IBAN</b><br>
+PK88TMFB0000000037817113</p>
+
+<button id="copyIban">
+
+Copy IBAN
+
+</button>
+
+<button id="closePayment">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
