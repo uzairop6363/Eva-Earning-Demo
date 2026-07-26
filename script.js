@@ -1,135 +1,183 @@
-/* ===================================
-   EVA EARNING DEMO
-   script.js - Part 1
-=================================== */
+/* ====================================
+   EVA EARNING
+   SCRIPT.JS PART 1
+==================================== */
 
-// Splash Screen
+const splash=document.getElementById("splash");
+const app=document.getElementById("app");
 
-window.addEventListener("load", () => {
+window.addEventListener("load",()=>{
 
-setTimeout(() => {
+setTimeout(()=>{
 
-document.getElementById("splash").style.display = "none";
+splash.style.opacity="0";
 
-document.getElementById("app").classList.remove("hidden");
+setTimeout(()=>{
 
-}, 5000);
+splash.style.display="none";
+
+app.classList.remove("hidden");
+
+},500);
+
+},5000);
 
 });
 
-// Local Storage Data
+/* --------------------
+   LOCAL STORAGE
+-------------------- */
 
-let wallet = Number(localStorage.getItem("wallet")) || 0;
-let todayReward = Number(localStorage.getItem("todayReward")) || 0;
-let adsLeft = Number(localStorage.getItem("adsLeft")) || 5;
-let adsWatched = Number(localStorage.getItem("adsWatched")) || 0;
+let wallet=parseInt(localStorage.getItem("wallet"))||0;
+let reward=parseInt(localStorage.getItem("reward"))||0;
+let ads=parseInt(localStorage.getItem("ads"))||5;
+let watched=parseInt(localStorage.getItem("watched"))||0;
 
-let currentPlan = localStorage.getItem("plan") || "FREE";
+let plan=localStorage.getItem("plan")||"FREE PLAN";
 
-let login = localStorage.getItem("login") || "false";
+let username=localStorage.getItem("username")||"Guest User";
+let email=localStorage.getItem("email")||"guest@example.com";
 
-let userName = localStorage.getItem("userName") || "Guest";
+/* --------------------
+   UI UPDATE
+-------------------- */
 
-let userEmail = localStorage.getItem("userEmail") || "demo@example.com";
+function updateUI(){
 
-// Elements
+document.getElementById("wallet").innerHTML=
+"PKR "+wallet;
 
-const walletEl = document.getElementById("wallet");
-const rewardEl = document.getElementById("todayReward");
-const adsEl = document.getElementById("adsLeft");
+document.getElementById("todayReward").innerHTML=
+reward;
 
-const profileName = document.getElementById("profileName");
-const profileEmail = document.getElementById("profileEmail");
-const profilePlan = document.getElementById("profilePlan");
-const profileBalance = document.getElementById("profileBalance");
-const adsWatchEl = document.getElementById("adsWatched");
-const totalRewardEl = document.getElementById("totalRewards");
+document.getElementById("adsLeft").innerHTML=
+ads;
 
-const planName = document.getElementById("planName");
+document.getElementById("adsWatched").innerHTML=
+watched;
 
-// Refresh UI
+document.getElementById("profileWallet").innerHTML=
+"PKR "+wallet;
 
-function refreshUI(){
+document.getElementById("profileRewards").innerHTML=
+"PKR "+reward;
 
-walletEl.innerHTML = "PKR " + wallet;
+document.getElementById("profileAds").innerHTML=
+watched;
 
-rewardEl.innerHTML = "PKR " + todayReward;
+document.getElementById("profilePlan").innerHTML=
+plan;
 
-adsEl.innerHTML = adsLeft;
+document.getElementById("profileName").innerHTML=
+username;
 
-planName.innerHTML = currentPlan;
-
-profileName.innerHTML = userName;
-
-profileEmail.innerHTML = userEmail;
-
-profilePlan.innerHTML = currentPlan;
-
-profileBalance.innerHTML = "PKR " + wallet;
-
-adsWatchEl.innerHTML = adsWatched;
-
-totalRewardEl.innerHTML = "PKR " + wallet;
+document.getElementById("profileEmail").innerHTML=
+email;
 
 }
 
-refreshUI();
+updateUI();
 
+/* --------------------
+   DEMO ACTIVITY
+-------------------- */
 
-// Theme
+const activity=document.getElementById("activityText");
 
-const themeBtn = document.getElementById("themeBtn");
+const names=[
 
-if(localStorage.getItem("theme")=="light"){
+"Ahmad",
+"Ali",
+"Fatima",
+"Hina",
+"Usman",
+"Bilal",
+"Ayesha",
+"Zain",
+"Hamza",
+"Sana",
+"Umer",
+"Zoya"
 
-document.body.classList.add("light");
+];
 
-themeBtn.innerHTML="☀️";
+const amounts=[
+
+100,
+200,
+300,
+500,
+700,
+900,
+1000,
+1500,
+2500
+
+];
+
+function activityTicker(){
+
+let name=
+names[Math.floor(Math.random()*names.length)];
+
+let amount=
+amounts[Math.floor(Math.random()*amounts.length)];
+
+activity.innerHTML=
+`🟢 <b>${name}</b> completed a demo reward • PKR ${amount}`;
 
 }
 
-themeBtn.onclick=function(){
+activityTicker();
 
-document.body.classList.toggle("light");
+setInterval(activityTicker,3000);
 
-if(document.body.classList.contains("light")){
+/* --------------------
+   THEME
+-------------------- */
 
-localStorage.setItem("theme","light");
+const themeBtn=document.getElementById("themeBtn");
 
-themeBtn.innerHTML="☀️";
+themeBtn.onclick=()=>{
 
-}else{
+document.body.classList.toggle("dark");
 
-localStorage.setItem("theme","dark");
-
-themeBtn.innerHTML="🌙";
-
-}
+localStorage.setItem(
+"theme",
+document.body.classList.contains("dark")
+?"dark":"light"
+);
 
 };
 
+if(localStorage.getItem("theme")=="dark"){
 
-// Login
+document.body.classList.add("dark");
+
+}/* ============================
+   LOGIN SYSTEM
+============================ */
 
 const loginBtn=document.getElementById("loginBtn");
+const loginModal=document.getElementById("loginModal");
 
-loginBtn.onclick=function(){
+loginBtn.onclick=()=>{
 
-document.getElementById("loginModal").style.display="flex";
-
-};
-
-document.getElementById("closeLogin").onclick=function(){
-
-document.getElementById("loginModal").style.display="none";
+loginModal.style.display="flex";
 
 };
 
-document.getElementById("loginSubmit").onclick=function(){
+document.querySelector(".closeModal").onclick=()=>{
 
-let name=document.getElementById("username").value.trim();
+loginModal.style.display="none";
 
-let email=document.getElementById("email").value.trim();
+};
+
+document.getElementById("loginSubmit").onclick=()=>{
+
+const name=document.getElementById("userName").value.trim();
+
+const mail=document.getElementById("userEmail").value.trim();
 
 if(name==""){
 
@@ -139,43 +187,34 @@ return;
 
 }
 
-userName=name;
+username=name;
+email=mail;
 
-userEmail=email;
+localStorage.setItem("username",username);
+localStorage.setItem("email",email);
 
-login="true";
+loginModal.style.display="none";
 
-localStorage.setItem("login","true");
+updateUI();
 
-localStorage.setItem("userName",name);
+alert("Welcome "+username);
 
-localStorage.setItem("userEmail",email);
+};
 
-refreshUI();
+/* ============================
+   WATCH DEMO AD
+============================ */
 
-document.getElementById("loginModal").style.display="none";
+const watchBtn=document.getElementById("watchAd");
 
-alert("Welcome " + name);
+const timer=document.getElementById("timer");
 
-};/* ==========================
-   WATCH AD + NAVIGATION
-========================== */
+watchBtn.onclick=()=>{
 
-const watchBtn = document.getElementById("watchAd");
-const timer = document.getElementById("timer");
+if(ads<=0){
 
-watchBtn.onclick = function(){
+alert("Today's demo ads are finished.");
 
-if(login!="true"){
-
-alert("Please Login First");
-return;
-
-}
-
-if(adsLeft<=0){
-
-alert("Today's demo ads finished.");
 return;
 
 }
@@ -184,41 +223,39 @@ watchBtn.disabled=true;
 
 let sec=15;
 
-timer.innerHTML="Ad Ends In : "+sec+"s";
+timer.innerHTML="⏳ "+sec+" sec";
 
-let run=setInterval(function(){
+const interval=setInterval(()=>{
 
 sec--;
 
-timer.innerHTML="Ad Ends In : "+sec+"s";
+timer.innerHTML="⏳ "+sec+" sec";
 
 if(sec<=0){
 
-clearInterval(run);
-
-adsLeft--;
-
-adsWatched++;
+clearInterval(interval);
 
 wallet+=100;
 
-todayReward+=100;
+reward+=100;
+
+ads--;
+
+watched++;
 
 localStorage.setItem("wallet",wallet);
-localStorage.setItem("todayReward",todayReward);
-localStorage.setItem("adsLeft",adsLeft);
-localStorage.setItem("adsWatched",adsWatched);
 
-refreshUI();
+localStorage.setItem("reward",reward);
 
-timer.innerHTML="🎉 PKR 100 Added";
+localStorage.setItem("ads",ads);
 
-setTimeout(()=>{
+localStorage.setItem("watched",watched);
 
-timer.innerHTML="";
+updateUI();
+
+timer.innerHTML="🎉 Demo Reward Added +PKR 100";
+
 watchBtn.disabled=false;
-
-},2500);
 
 }
 
@@ -226,41 +263,13 @@ watchBtn.disabled=false;
 
 };
 
+/* ============================
+   VIP BUTTONS
+============================ */
 
-/* ==========================
-   BOTTOM NAVIGATION
-========================== */
+document.querySelectorAll(".buyVip").forEach(btn=>{
 
-const pages=document.querySelectorAll(".page");
-
-const navBtns=document.querySelectorAll(".navBtn");
-
-navBtns.forEach(btn=>{
-
-btn.onclick=function(){
-
-navBtns.forEach(x=>x.classList.remove("active"));
-
-this.classList.add("active");
-
-pages.forEach(p=>p.classList.remove("active"));
-
-document
-.getElementById(this.dataset.page)
-.classList.add("active");
-
-};
-
-});
-
-
-/* ==========================
-   VIP PLAN
-========================== */
-
-document.querySelectorAll(".buyPlan").forEach(btn=>{
-
-btn.onclick=function(){
+btn.onclick=()=>{
 
 document.getElementById("paymentModal").style.display="flex";
 
@@ -268,19 +277,13 @@ document.getElementById("paymentModal").style.display="flex";
 
 });
 
-
-document.getElementById("closePayment").onclick=function(){
+document.getElementById("closePayment").onclick=()=>{
 
 document.getElementById("paymentModal").style.display="none";
 
 };
 
-
-/* ==========================
-   COPY IBAN
-========================== */
-
-document.getElementById("copyIban").onclick=function(){
+document.getElementById("copyIban").onclick=()=>{
 
 navigator.clipboard.writeText(
 "PK88TMFB0000000037817113"
@@ -288,96 +291,82 @@ navigator.clipboard.writeText(
 
 alert("IBAN Copied");
 
+};/* ============================
+   BOTTOM NAVIGATION
+============================ */
+
+const navItems=document.querySelectorAll(".navItem");
+const pages=document.querySelectorAll(".page");
+
+navItems.forEach(item=>{
+
+item.onclick=()=>{
+
+navItems.forEach(i=>i.classList.remove("active"));
+
+item.classList.add("active");
+
+pages.forEach(page=>page.classList.remove("active"));
+
+document
+.getElementById(item.dataset.page)
+.classList.add("active");
+
 };
 
+});
 
-/* ==========================
+/* ============================
    WITHDRAW
-========================== */
+============================ */
 
-document.getElementById("withdrawBtn").onclick=function(){
+document.getElementById("withdrawBtn").onclick=()=>{
 
-if(login!="true"){
+const name=document.getElementById("withdrawName").value.trim();
 
-alert("Please Login First");
+const phone=document.getElementById("withdrawPhone").value.trim();
+
+const amount=document.getElementById("withdrawAmount").value;
+
+if(name==""||phone==""||amount==""){
+
+alert("Please fill all fields.");
 
 return;
 
 }
 
-alert("Demo Withdrawal Submitted Successfully.");
+let history=JSON.parse(localStorage.getItem("withdrawHistory")||"[]");
 
-};/* ==========================
-   DEMO ACTIVITY TICKER
-========================== */
+history.push({
 
-const tickerText = document.getElementById("tickerText");
+name,
+phone,
+amount,
+method:document.getElementById("method").value,
+date:new Date().toLocaleString()
 
-const demoMessages = [
+});
 
-"Ahmad completed a reward task",
+localStorage.setItem(
+"withdrawHistory",
+JSON.stringify(history)
+);
 
-"Fatima earned demo points",
+alert("✅ Demo withdrawal request submitted.");
 
-"Ali finished today's demo ad",
+};
 
-"Hina received a demo reward",
-
-"Usman completed a task",
-
-"Bilal earned PKR 100",
-
-"Ayesha watched a demo ad",
-
-"Hamza completed today's reward"
-
-];
-
-setInterval(()=>{
-
-tickerText.innerHTML="🟢 Demo Activity : "+demoMessages[Math.floor(Math.random()*demoMessages.length)];
-
-},3000);
-
-
-/* ==========================
-   24 HOUR RESET
-========================== */
-
-const ONE_DAY = 24*60*60*1000;
-
-let lastReset = Number(localStorage.getItem("lastReset")) || Date.now();
-
-if(Date.now()-lastReset>=ONE_DAY){
-
-adsLeft=5;
-
-todayReward=0;
-
-localStorage.setItem("adsLeft",5);
-
-localStorage.setItem("todayReward",0);
-
-localStorage.setItem("lastReset",Date.now());
-
-refreshUI();
-
-}
-
-
-/* ==========================
+/* ============================
    LOGOUT
-========================== */
+============================ */
 
-document.getElementById("logoutBtn").onclick=function(){
+document.getElementById("logoutBtn").onclick=()=>{
 
 if(confirm("Logout?")){
 
-localStorage.removeItem("login");
-
-localStorage.removeItem("userName");
-
-localStorage.removeItem("userEmail");
+localStorage.removeItem("username");
+localStorage.removeItem("email");
 
 location.reload();
 
@@ -385,57 +374,52 @@ location.reload();
 
 };
 
+/* ============================
+   DAILY RESET
+============================ */
 
-/* ==========================
-   CLOSE POPUPS
-========================== */
+const lastReset=
+Number(localStorage.getItem("lastReset"))||Date.now();
 
-window.onclick=function(e){
+const now=Date.now();
 
-const loginModal=document.getElementById("loginModal");
+if(now-lastReset>=86400000){
 
-const paymentModal=document.getElementById("paymentModal");
+ads=5;
+reward=0;
 
-if(e.target===loginModal){
+localStorage.setItem("ads",5);
+localStorage.setItem("reward",0);
+localStorage.setItem("lastReset",now);
+
+updateUI();
+
+}
+
+/* ============================
+   CLICK OUTSIDE MODAL
+============================ */
+
+window.onclick=(e)=>{
+
+if(e.target==loginModal){
 
 loginModal.style.display="none";
 
 }
 
-if(e.target===paymentModal){
+if(e.target==document.getElementById("paymentModal")){
 
-paymentModal.style.display="none";
+document.getElementById("paymentModal").style.display="none";
 
 }
 
 };
 
-
-/* ==========================
-   SAVE DATA
-========================== */
-
-function saveData(){
-
-localStorage.setItem("wallet",wallet);
-
-localStorage.setItem("todayReward",todayReward);
-
-localStorage.setItem("adsLeft",adsLeft);
-
-localStorage.setItem("adsWatched",adsWatched);
-
-localStorage.setItem("plan",currentPlan);
-
-}
-
-window.addEventListener("beforeunload",saveData);
-
-
-/* ==========================
+/* ============================
    START
-========================== */
+============================ */
 
-refreshUI();
+updateUI();
 
-console.log("Eva Earning Demo Loaded Successfully");
+console.log("Eva Earning Premium Demo Loaded.");
