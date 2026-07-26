@@ -1,28 +1,29 @@
-/* ==========================
-   EVA EARNING - STYLE.CSS
-========================== */
+/* =====================================
+   EVA EARNING - PREMIUM UI
+===================================== */
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:'Inter',sans-serif;
 }
 
 :root{
 
---primary:#22c55e;
---secondary:#2563eb;
---bg:#0f172a;
---card:rgba(255,255,255,.08);
---text:#ffffff;
---shadow:0 15px 35px rgba(0,0,0,.25);
+--primary:#2563eb;
+--primary2:#3b82f6;
+--bg:#eef5ff;
+--card:rgba(255,255,255,.65);
+--text:#0f172a;
+--border:rgba(255,255,255,.45);
+--shadow:0 12px 40px rgba(37,99,235,.18);
 
 }
 
 body{
 
-background:var(--bg);
+background:linear-gradient(180deg,#f7fbff,#eaf3ff);
 color:var(--text);
 overflow-x:hidden;
 
@@ -37,43 +38,46 @@ inset:0;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-z-index:9999;
+background:linear-gradient(135deg,#2563eb,#60a5fa);
+z-index:99999;
 
 }
 
-.logoBox{
+.splashLogo{
 
 text-align:center;
+color:#fff;
 
 }
 
-.logoBox h1{
+.logoCircle{
 
-font-size:38px;
-font-weight:700;
+width:90px;
+height:90px;
+border-radius:50%;
+margin:auto;
+display:flex;
+justify-content:center;
+align-items:center;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(20px);
+font-size:44px;
+margin-bottom:20px;
 
 }
 
-.logoBox p{
+.loading{
 
-margin-top:10px;
-opacity:.9;
-
-}
-
-.loader{
-
-width:240px;
+width:250px;
 height:10px;
-background:#ffffff40;
+background:rgba(255,255,255,.25);
 border-radius:30px;
 overflow:hidden;
 margin-top:25px;
 
 }
 
-.loaderBar{
+.loadingBar{
 
 height:100%;
 width:0%;
@@ -102,258 +106,664 @@ display:none;
 
 header{
 
+position:sticky;
+top:0;
+z-index:1000;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:18px;
-background:#111827;
-position:sticky;
-top:0;
-z-index:100;
+padding:18px 20px;
+background:rgba(255,255,255,.72);
+backdrop-filter:blur(20px);
+border-bottom:1px solid rgba(255,255,255,.4);
 
 }
 
-.demoBadge{
+header h2{
+
+font-size:24px;
+font-weight:800;
+
+}
+
+.demoTag{
 
 display:inline-block;
-margin-top:5px;
-padding:4px 10px;
-border-radius:20px;
-background:#22c55e;
+margin-top:6px;
+padding:5px 12px;
+background:#2563eb;
+color:#fff;
+border-radius:30px;
 font-size:11px;
 
 }
 
-.headerButtons{
+.headerIcons{
 
 display:flex;
 gap:10px;
 
 }
 
-.headerButtons button{
+.headerIcons button{
 
-padding:10px 16px;
+width:48px;
+height:48px;
 border:none;
-border-radius:12px;
-background:var(--secondary);
-color:#fff;
-cursor:pointer;
-
-}
-
-/* Notification */
-
-.ticker{
-
-background:#16a34a;
-padding:10px;
-text-align:center;
-font-size:13px;
-font-weight:600;
-overflow:hidden;
-
-}
-
-/* Pages */
-
-.page{
-
-display:none;
-padding:18px;
-padding-bottom:90px;
-
-}
-
-.page.active{
-
-display:block;
-
-}
-
-/* Cards */
-
-.card,
-.vipCard,
-.withdrawCard,
-.profileCard,
-.supportCard,
-.welcomeCard,
-.adCard{
-
-background:var(--card);
-backdrop-filter:blur(15px);
-border-radius:20px;
-padding:18px;
+border-radius:16px;
+background:#fff;
 box-shadow:var(--shadow);
-margin-bottom:18px;
-
-}
-
-.grid{
-
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-
-}
-
-.card h2{
-
-margin-top:10px;
-font-size:26px;
-
-}/* Home */
-
-.adCard h1{
-font-size:36px;
-margin:15px 0;
-color:#22c55e;
-}
-
-#adTimer,
-#timer{
-margin-top:15px;
-font-size:22px;
-font-weight:700;
-text-align:center;
-}
-
-#watchAd,
-.buyPlan,
-#withdrawBtn,
-#loginSubmit,
-#logoutBtn,
-#copyIban,
-#closePayment,
-#closeLogin{
-
-width:100%;
-padding:14px;
-margin-top:15px;
-border:none;
-border-radius:14px;
-background:#22c55e;
-color:#fff;
-font-size:16px;
 cursor:pointer;
 transition:.3s;
 
 }
 
-#watchAd:hover,
-.buyPlan:hover,
-#withdrawBtn:hover{
+.headerIcons button:hover{
 
-transform:translateY(-2px);
+transform:translateY(-4px);
 
 }
 
-/* Inputs */
+/* Demo Activity */
 
-input,
-select{
+.activityBar{
 
-width:100%;
-padding:14px;
-margin-top:12px;
-border:none;
-border-radius:12px;
-background:#1e293b;
-color:#fff;
-outline:none;
-
-}
-
-/* Profile */
-
-.avatar{
-
-width:90px;
-height:90px;
-border-radius:50%;
-background:#2563eb;
 display:flex;
-justify-content:center;
 align-items:center;
-font-size:42px;
-margin:auto;
+gap:10px;
+margin:18px;
+padding:15px 18px;
+border-radius:18px;
+background:#fff;
+box-shadow:var(--shadow);
+overflow:hidden;
+
+}
+
+.green{
+
+color:#16a34a;
+
+}
+
+#activityText{
+
+font-size:14px;
+font-weight:600;
+white-space:nowrap;
+animation:slideTicker 10s linear infinite;
+
+}
+
+@keyframes slideTicker{
+
+0%{
+
+transform:translateX(100%);
+
+}
+
+100%{
+
+transform:translateX(-120%);
+
+}
+
+}/* ===========================
+   HOME PAGE
+=========================== */
+
+.page{
+display:none;
+padding:20px;
+padding-bottom:100px;
+animation:fade .35s ease;
+}
+
+.page.active{
+display:block;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(12px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Wallet */
+
+.walletCard{
+
+background:linear-gradient(135deg,#2563eb,#60a5fa);
+color:#fff;
+border-radius:28px;
+padding:24px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 18px 45px rgba(37,99,235,.30);
+margin-bottom:22px;
+position:relative;
+overflow:hidden;
+
+}
+
+.walletCard::after{
+
+content:"";
+position:absolute;
+right:-50px;
+top:-50px;
+width:180px;
+height:180px;
+background:rgba(255,255,255,.12);
+border-radius:50%;
+
+}
+
+.walletCard h1{
+
+font-size:34px;
+margin-top:8px;
+
+}
+
+.plan{
+
+padding:8px 16px;
+background:#ffffff25;
+border-radius:50px;
+font-size:13px;
+font-weight:700;
+
+}
+
+/* Stats */
+
+.statsGrid{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
 margin-bottom:20px;
 
 }
 
-.profileCard{
+.stat{
 
-text-align:center;
-
-}
-
-.profileInfo{
-
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-margin:25px 0;
+background:var(--card);
+backdrop-filter:blur(18px);
+border:1px solid var(--border);
+border-radius:22px;
+padding:18px;
+box-shadow:var(--shadow);
 
 }
 
-/* Support */
+.stat p{
 
-.supportCard{
-
-text-align:center;
-
-}
-
-.supportCard a{
-
-display:block;
-margin-top:20px;
-padding:15px;
-background:#25D366;
-color:white;
-text-decoration:none;
-border-radius:14px;
+font-size:13px;
+color:#64748b;
 
 }
 
-/* Navigation */
+.stat h2{
 
-.bottomNav{
+margin-top:10px;
+font-size:26px;
+font-weight:800;
+color:#2563eb;
 
-position:fixed;
-bottom:0;
-left:0;
+}
+
+/* Watch Ad */
+
+.watchCard{
+
+background:var(--card);
+backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:24px;
+padding:24px;
+box-shadow:var(--shadow);
+
+}
+
+.watchCard h3{
+
+font-size:22px;
+margin-bottom:10px;
+
+}
+
+.watchCard p{
+
+line-height:1.7;
+color:#475569;
+
+}
+
+#watchAd{
+
+margin-top:22px;
 width:100%;
-height:72px;
-background:#111827;
+height:56px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+color:#fff;
+font-size:17px;
+font-weight:700;
 display:flex;
-justify-content:space-around;
 align-items:center;
-box-shadow:0 -10px 30px rgba(0,0,0,.35);
+justify-content:center;
+gap:8px;
+cursor:pointer;
+transition:.25s;
 
 }
 
-.navBtn{
+#watchAd:hover{
 
-background:none;
-border:none;
-color:#aaa;
+transform:translateY(-3px);
+
+}
+
+#watchAd:active{
+
+transform:scale(.98);
+
+}
+
+#timer{
+
+margin-top:18px;
+text-align:center;
+font-size:18px;
+font-weight:700;
+color:#2563eb;
+
+}/* ===========================
+   VIP PAGE
+=========================== */
+
+.pageTitle{
+
+font-size:26px;
+font-weight:800;
+margin-bottom:18px;
+
+}
+
+.vipGrid{
+
 display:flex;
 flex-direction:column;
+gap:18px;
+
+}
+
+.vipCard{
+
+background:rgba(255,255,255,.72);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.5);
+border-radius:24px;
+padding:22px;
+box-shadow:var(--shadow);
+transition:.35s;
+position:relative;
+overflow:hidden;
+
+}
+
+.vipCard::before{
+
+content:"";
+position:absolute;
+top:-70px;
+right:-70px;
+width:180px;
+height:180px;
+border-radius:50%;
+background:rgba(37,99,235,.08);
+
+}
+
+.vipCard:hover{
+
+transform:translateY(-6px);
+box-shadow:0 25px 50px rgba(37,99,235,.25);
+
+}
+
+.premium{
+
+border:2px solid #2563eb;
+
+}
+
+.gold{
+
+background:linear-gradient(135deg,#2563eb,#60a5fa);
+color:#fff;
+
+}
+
+.vipTop{
+
+display:flex;
+justify-content:space-between;
 align-items:center;
-font-size:13px;
+margin-bottom:18px;
+
+}
+
+.price{
+
+background:#2563eb;
+color:#fff;
+padding:8px 16px;
+border-radius:50px;
+font-weight:700;
+
+}
+
+.gold .price{
+
+background:#fff;
+color:#2563eb;
+
+}
+
+.vipCard ul{
+
+list-style:none;
+margin:18px 0;
+
+}
+
+.vipCard li{
+
+padding:10px 0;
+font-size:15px;
+
+}
+
+.buyVip{
+
+width:100%;
+height:54px;
+border:none;
+border-radius:16px;
+background:#2563eb;
+color:#fff;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.gold .buyVip{
+
+background:#fff;
+color:#2563eb;
+
+}
+
+.buyVip:hover{
+
+transform:scale(1.02);
+
+}
+
+/* ===========================
+   WITHDRAW
+=========================== */
+
+.glassCard{
+
+background:rgba(255,255,255,.72);
+backdrop-filter:blur(20px);
+border-radius:24px;
+padding:22px;
+box-shadow:var(--shadow);
+
+}
+
+.glassCard input,
+.glassCard select{
+
+width:100%;
+height:55px;
+margin-top:14px;
+padding:0 16px;
+border:none;
+border-radius:16px;
+background:#f1f5f9;
+font-size:15px;
+outline:none;
+
+}
+
+.limit{
+
+margin:16px 0;
+font-size:14px;
+color:#64748b;
+
+}
+
+#withdrawBtn{
+
+width:100%;
+height:56px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+color:#fff;
+font-size:17px;
+font-weight:700;
 cursor:pointer;
 
 }
 
-.navBtn.active{
+/* ===========================
+   PROFILE
+=========================== */
 
-color:#22c55e;
+.profileCard{
+
+background:rgba(255,255,255,.72);
+backdrop-filter:blur(20px);
+border-radius:26px;
+padding:24px;
+text-align:center;
+box-shadow:var(--shadow);
 
 }
 
-/* Popup */
+.profileImage{
+
+width:95px;
+height:95px;
+margin:auto;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#2563eb,#60a5fa);
+color:#fff;
+font-size:48px;
+
+}
+
+.profileStats{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin:24px 0;
+
+}
+
+.profileStats div{
+
+background:#f8fbff;
+padding:18px;
+border-radius:18px;
+
+}
+
+.profileStats h3{
+
+margin-top:8px;
+color:#2563eb;
+
+}
+
+#logoutBtn{
+
+width:100%;
+height:55px;
+border:none;
+border-radius:18px;
+background:#ef4444;
+color:#fff;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+
+}/* ===========================
+   SUPPORT PAGE
+=========================== */
+
+.supportIcon{
+
+font-size:70px;
+color:#2563eb;
+margin-bottom:15px;
+
+}
+
+.supportCard{
+
+background:rgba(255,255,255,.72);
+backdrop-filter:blur(20px);
+border-radius:26px;
+padding:30px;
+text-align:center;
+box-shadow:var(--shadow);
+
+}
+
+.supportCard h3{
+
+margin:15px 0;
+
+}
+
+.supportCard p{
+
+color:#64748b;
+line-height:1.7;
+
+}
+
+.supportBtn{
+
+margin-top:22px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+height:56px;
+border-radius:18px;
+background:#25D366;
+color:#fff;
+text-decoration:none;
+font-weight:700;
+transition:.3s;
+
+}
+
+.supportBtn:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* ===========================
+   BOTTOM NAVIGATION
+=========================== */
+
+.bottomNav{
+
+position:fixed;
+bottom:18px;
+left:50%;
+transform:translateX(-50%);
+width:94%;
+height:72px;
+
+background:rgba(255,255,255,.82);
+backdrop-filter:blur(22px);
+
+border-radius:24px;
+
+display:flex;
+justify-content:space-around;
+align-items:center;
+
+box-shadow:0 15px 45px rgba(37,99,235,.18);
+
+z-index:999;
+
+}
+
+.navItem{
+
+border:none;
+background:none;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:3px;
+color:#94a3b8;
+cursor:pointer;
+transition:.25s;
+
+}
+
+.navItem span{
+
+font-size:26px;
+
+}
+
+.navItem p{
+
+font-size:12px;
+font-weight:600;
+
+}
+
+.navItem.active{
+
+color:#2563eb;
+transform:translateY(-6px);
+
+}
+
+/* ===========================
+   MODALS
+=========================== */
 
 .modal{
 
@@ -362,34 +772,155 @@ inset:0;
 display:none;
 justify-content:center;
 align-items:center;
-background:rgba(0,0,0,.65);
-z-index:999;
+background:rgba(15,23,42,.45);
+backdrop-filter:blur(6px);
+z-index:5000;
 
 }
 
-.modalContent{
+.modalBox{
 
-width:90%;
-max-width:380px;
-background:#1e293b;
-padding:22px;
-border-radius:20px;
+width:92%;
+max-width:390px;
+
+background:#fff;
+
+border-radius:28px;
+
+padding:24px;
+
+animation:popup .28s ease;
 
 }
 
-/* Responsive */
+@keyframes popup{
+
+from{
+
+transform:scale(.92);
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+opacity:1;
+
+}
+
+}
+
+.modalBox input{
+
+width:100%;
+height:54px;
+margin-top:14px;
+padding:0 16px;
+border:none;
+border-radius:16px;
+background:#f1f5f9;
+outline:none;
+
+}
+
+.modalBox button{
+
+margin-top:16px;
+width:100%;
+height:54px;
+border:none;
+border-radius:16px;
+font-weight:700;
+cursor:pointer;
+
+}
+
+#loginSubmit,
+#closePayment{
+
+background:#2563eb;
+color:#fff;
+
+}
+
+.closeModal{
+
+background:#eef2ff;
+
+}
+
+.paymentCard{
+
+margin-top:18px;
+padding:18px;
+border-radius:18px;
+background:#f8fbff;
+
+}
+
+.ibanBox{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:#eef4ff;
+
+padding:14px;
+border-radius:14px;
+margin-top:10px;
+
+}
+
+#copyIban{
+
+width:46px;
+height:46px;
+border:none;
+border-radius:12px;
+background:#2563eb;
+color:#fff;
+
+}
+
+.demoNotice{
+
+margin-top:20px;
+padding:16px;
+border-left:4px solid #2563eb;
+background:#eff6ff;
+border-radius:12px;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
 
 @media(max-width:480px){
 
-.grid{
+.walletCard h1{
+
+font-size:28px;
+
+}
+
+.statsGrid{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.profileStats{
 
 grid-template-columns:1fr;
 
 }
 
-header h2{
+.bottomNav{
 
-font-size:20px;
+height:68px;
 
 }
 
