@@ -8,6 +8,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import authRoutes from "./routes/auth.js";
+import withdrawRoutes from "./routes/withdraw.js";
 
 
 dotenv.config();
@@ -16,7 +17,9 @@ dotenv.config();
 const app = express();
 
 
-// Middleware
+// =====================
+// MIDDLEWARE
+// =====================
 
 app.use(cors());
 
@@ -24,33 +27,56 @@ app.use(express.json());
 
 
 
-// Test Route
+
+// =====================
+// TEST ROUTE
+// =====================
 
 app.get("/", (req,res)=>{
 
     res.json({
+
         message:"Eva Earning Backend Running 🚀"
+
     });
 
 });
 
 
 
-// Auth Routes
 
-app.use("/api/auth", authRoutes);
+// =====================
+// API ROUTES
+// =====================
+
+app.use(
+    "/api/auth",
+    authRoutes
+);
+
+
+app.use(
+    "/api/withdraw",
+    withdrawRoutes
+);
 
 
 
 
 
-// MongoDB Connection
+// =====================
+// MONGODB CONNECTION
+// =====================
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(
+    process.env.MONGO_URI
+)
 
 .then(()=>{
 
-    console.log("MongoDB Connected ✅");
+    console.log(
+        "MongoDB Connected ✅"
+    );
 
 })
 
@@ -67,15 +93,22 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 
-// Server Start
+// =====================
+// SERVER START
+// =====================
 
-const PORT = process.env.PORT || 5000;
+const PORT =
+process.env.PORT || 5000;
 
 
 app.listen(PORT,()=>{
 
+
     console.log(
-        `Server running on port ${PORT}`
+
+        `Eva Backend running on port ${PORT}`
+
     );
+
 
 });
