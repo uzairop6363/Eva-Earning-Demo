@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Eva Earning</title>
+
+<meta name="theme-color" content="#2563EB">
+
+<link rel="icon" href="assets/logo.png">
+
+<link rel="apple-touch-icon" href="assets/logo.png">
+
+<link rel="stylesheet" href="style.css">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded" rel="stylesheet">
+
+
+</head>
+
+
+<body>
+
+
+
+<!-- SPLASH -->
+
+<div id="splash">
+
+
+<div class="splashLogo">
+
+
+<img src="assets/logo.png" class="splashImage">
+
+
+<h1>
+Eva Earning
+</h1>
+
+
+<p>
+Smart Rewards
+</p>
+
+
+
+<div class="loading">
+
+<div class="loadingBar"></div>
+
+</div>
+
+
+<span class="version">
+Version 2.0
+</span>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- APP -->
+
+
+<div id="app" class="hidden">
+
+
+
+<header>
+
+
+<div class="brand">
+
+
+<img src="assets/logo.png" class="headerLogo">
+
+
+
+<div>
+
+<h2>
+Eva Earning
+</h2>
+
+
+<small>
+Smart Rewards
+</small>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="headerIcons">
+
+
+<button id="themeBtn">
+
+<span class="material-symbols-rounded">
+dark_mode
+</span>
+
+</button>
+
+
+
+<button id="loginBtn">
+
+<span class="material-symbols-rounded">
+person
+</span>
+
+</button>
+
+
+
+</div>
+
+
+</header>
+
+
+
+
+
+<!-- ACTIVITY -->
+
+
+<div class="activityBar">
+
+
+<span class="material-symbols-rounded green">
+verified
+</span>
+
+
+<marquee id="activityText">
+
+Loading Activity...
+
+</marquee>
+
+
+</div><!-- HOME PAGE -->
+
+<section id="homePage" class="page active">
+
+
+<div class="walletCard">
+
+
+<div class="walletTop">
+
+
+<div>
+
+<p>
+Available Balance
+</p>
+
+
+<h1 id="wallet">
+PKR 0
+</h1>
+
+
+</div>
+
+
+
+<button id="toggleBalance">
+
+<span class="material-symbols-rounded">
+visibility
+</span>
+
+</button>
+
+
+</div>
+
+
+
+
+<div class="walletBottom">
+
+
+<div class="plan">
+FREE PLAN
+</div>
+
+
+
+<div class="walletChip">
+
+<span class="material-symbols-rounded">
+account_balance_wallet
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<!-- STATS -->
+
+
+<div class="statsGrid">
+
+
+<div class="stat">
+
+<span class="material-symbols-rounded">
+paid
+</span>
+
+
+<p>
+Today's Reward
+</p>
+
+
+<h2 id="todayReward">
+0
+</h2>
+
+
+</div>
+
+
+
+
+<div class="stat">
+
+
+<span class="material-symbols-rounded">
+play_circle
+</span>
+
+
+<p>
+Ads Left
+</p>
+
+
+<h2 id="adsLeft">
+5
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="stat">
+
+
+<span class="material-symbols-rounded">
+task_alt
+</span>
+
+
+<p>
+Ads Watched
+</p>
+
+
+<h2 id="adsWatched">
+0
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="stat">
+
+
+<span class="material-symbols-rounded">
+payments
+</span>
+
+
+<p>
+Daily Limit
+</p>
+
+
+<h2>
+PKR 50
+</h2>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- WATCH AD -->
+
+
+<div class="watchCard">
+
+
+<h3>
+Rewarded Ad
+</h3>
+
+
+<p>
+Watch advertisement and earn
+<strong>
+PKR 100
+</strong>
+reward
+</p>
+
+
+
+<button id="watchAd">
+
+
+<span class="material-symbols-rounded">
+smart_display
+</span>
+
+
+Watch Ad
+
+
+</button>
+
+
+
+<div id="timer"></div>
+
+
+
+</div>
+
+
+
+</section><!-- VIP PAGE -->
+
+<section id="vipPage" class="page">
+
+
+<h2 class="pageTitle">
+💎 VIP Membership
+</h2>
+
+
+<p class="pageSubTitle">
+Unlock more rewards with premium plans.
+</p>
+
+
+
+
+<div class="vipGrid">
+
+
+
+<div class="vipCard">
+
+
+<div class="vipBadge">
+VIP 1
+</div>
+
+
+<div class="vipPrice">
+PKR 2,000
+</div>
+
+
+
+<ul>
+
+<li>
+✅ 10 Ads Daily
+</li>
+
+
+<li>
+✅ Unlimited Withdraw
+</li>
+
+
+<li>
+✅ Premium Support
+</li>
+
+
+</ul>
+
+
+
+<button class="buyVip" data-plan="VIP 1">
+
+Activate VIP 1
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="vipCard premium">
+
+
+<div class="popularTag">
+MOST POPULAR
+</div>
+
+
+
+<div class="vipBadge">
+VIP 2
+</div>
+
+
+
+<div class="vipPrice">
+PKR 3,000
+</div>
+
+
+
+
+<ul>
+
+
+<li>
+✅ 20 Ads Daily
+</li>
+
+
+<li>
+✅ Premium Dashboard
+</li>
+
+
+<li>
+✅ Unlimited Withdraw
+</li>
+
+
+<li>
+✅ Faster Rewards
+</li>
+
+
+</ul>
+
+
+
+<button class="buyVip" data-plan="VIP 2">
+
+Activate VIP 2
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="vipCard diamond">
+
+
+<div class="vipBadge">
+VIP 3
+</div>
+
+
+
+<div class="vipPrice">
+PKR 5,000
+</div>
+
+
+
+
+<ul>
+
+
+<li>
+✅ 70 Ads Daily
+</li>
+
+
+<li>
+✅ Diamond Badge
+</li>
+
+
+<li>
+✅ Unlimited Withdraw
+</li>
+
+
+<li>
+✅ Exclusive Benefits
+</li>
+
+
+</ul>
+
+
+
+
+<button class="buyVip" data-plan="VIP 3">
+
+Activate VIP 3
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</section><!-- WITHDRAW PAGE -->
+
+<section id="withdrawPage" class="page">
+
+
+<h2 class="pageTitle">
+💸 Withdraw
+</h2>
+
+
+<p class="pageSubTitle">
+Submit your withdrawal request.
+</p>
+
+
+
+
+<div class="glassCard">
+
+
+
+<label>
+Withdrawal Method
+</label>
+
+
+<select id="method">
+
+<option>
+EasyPaisa
+</option>
+
+
+<option>
+JazzCash
+</option>
+
+
+</select>
+
+
+
+
+
+<label>
+Full Name
+</label>
+
+
+<input
+type="text"
+id="withdrawName"
+placeholder="Enter Full Name">
+
+
+
+
+
+<label>
+Account Number
+</label>
+
+
+<input
+type="tel"
+id="withdrawPhone"
+placeholder="03XXXXXXXXX">
+
+
+
+
+
+<label>
+Amount
+</label>
+
+
+<input
+type="number"
+id="withdrawAmount"
+placeholder="Minimum 50">
+
+
+
+
+
+
+<div class="limitCard">
+
+
+<span class="material-symbols-rounded">
+info
+</span>
+
+
+<div>
+
+
+<b>
+Withdrawal Limit
+</b>
+
+
+<p>
+Free Plan: PKR 50 / 24 Hours
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<button id="withdrawBtn">
+
+
+<span class="material-symbols-rounded">
+payments
+</span>
+
+
+Submit Request
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- WITHDRAW HISTORY -->
+
+
+<div class="glassCard">
+
+
+<h3>
+Withdraw History
+</h3>
+
+
+
+<div id="withdrawHistory">
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- PROFILE PAGE -->
+
+
+<section id="profilePage" class="page">
+
+
+<h2 class="pageTitle">
+👤 My Profile
+</h2>
+
+
+
+
+<div class="profileCard">
+
+
+<img
+src="assets/avatar.png"
+class="avatar">
+
+
+
+
+
+<h2 id="profileName">
+Guest User
+</h2>
+
+
+
+<p id="profileEmail">
+Login Required
+</p>
+
+
+
+
+
+<div class="profileStats">
+
+
+
+<div>
+
+<h3 id="profileWallet">
+PKR 0
+</h3>
+
+<p>
+Wallet
+</p>
+
+</div>
+
+
+
+
+<div>
+
+<h3 id="profileRewards">
+PKR 0
+</h3>
+
+<p>
+Rewards
+</p>
+
+</div>
+
+
+
+
+
+<div>
+
+<h3 id="profileAds">
+0
+</h3>
+
+<p>
+Ads Watched
+</p>
+
+</div>
+
+
+
+
+
+<div>
+
+<h3 id="profilePlan">
+FREE PLAN
+</h3>
+
+<p>
+Plan
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<button id="logoutBtn">
+
+Logout
+
+</button>
+
+
+
+</div>
+
+
+
+</section><!-- SUPPORT PAGE -->
+
+<section id="supportPage" class="page">
+
+
+<h2 class="pageTitle">
+🎧 Support
+</h2>
+
+
+<div class="glassCard">
+
+
+<h3>
+Need Help?
+</h3>
+
+
+<p>
+Contact Eva Earning support team for assistance.
+</p>
+
+
+<button>
+
+Contact Support
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- BOTTOM NAVIGATION -->
+
+
+<nav class="bottomNav">
+
+
+<button class="navItem active" data-page="homePage">
+
+
+<span class="material-symbols-rounded">
+home
+</span>
+
+
+<span>
+Home
+</span>
+
+
+</button>
+
+
+
+
+
+<button class="navItem" data-page="vipPage">
+
+
+<span class="material-symbols-rounded">
+diamond
+</span>
+
+
+<span>
+VIP
+</span>
+
+
+</button>
+
+
+
+
+
+<button class="navItem" data-page="withdrawPage">
+
+
+<span class="material-symbols-rounded">
+payments
+</span>
+
+
+<span>
+Withdraw
+</span>
+
+
+</button>
+
+
+
+
+
+<button class="navItem" data-page="profilePage">
+
+
+<span class="material-symbols-rounded">
+person
+</span>
+
+
+<span>
+Profile
+</span>
+
+
+</button>
+
+
+</nav>
+
+
+
+
+
+
+<!-- LOGIN MODAL -->
+
+
+<div id="loginModal" class="modal">
+
+
+<div class="modalBox">
+
+
+<button class="closeModal">
+×
+</button>
+
+
+
+<h2>
+Login / Create Account
+</h2>
+
+
+
+
+<input
+id="userName"
+type="text"
+placeholder="Full Name">
+
+
+
+
+
+<input
+id="userEmail"
+type="tel"
+placeholder="Phone Number">
+
+
+
+
+
+<button id="loginSubmit">
+
+
+Continue
+
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- TOAST AREA -->
+
+
+<div id="toast"></div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
