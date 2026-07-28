@@ -9,6 +9,12 @@
 
 <title>Eva Earning</title>
 
+<meta name="theme-color" content="#2563EB">
+
+<link rel="icon" href="assets/logo.png">
+
+<link rel="apple-touch-icon" href="assets/logo.png">
+
 <link rel="stylesheet" href="style.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,31 +25,29 @@
 
 <body>
 
-<!-- Splash -->
+<!-- Premium Splash -->
 
 <div id="splash">
 
 <div class="splashLogo">
 
-<div class="logoCircle">
-
-<span class="material-symbols-rounded">
-
-account_balance_wallet
-
-</span>
-
-</div>
+<img src="assets/logo.png" class="splashImage" alt="Eva Earning Logo">
 
 <h1>Eva Earning</h1>
 
-<p>Professional Demo</p>
+<p>Smart Demo Rewards</p>
 
 <div class="loading">
 
 <div class="loadingBar"></div>
 
 </div>
+
+<span class="version">
+
+Version 1.0 Demo
+
+</span>
 
 </div>
 
@@ -55,15 +59,23 @@ account_balance_wallet
 
 <header>
 
+<div class="brand">
+
+<img src="assets/logo.png" class="headerLogo">
+
 <div>
 
 <h2>Eva Earning</h2>
+
+<small>Smart Demo Rewards</small>
 
 <span class="demoTag">
 
 DEMO MODE
 
 </span>
+
+</div>
 
 </div>
 
@@ -91,11 +103,11 @@ person
 
 </div>
 
-</header>
-
-<!-- Live Demo Activity -->
+</header><!-- Demo Activity -->
 
 <div class="activityBar">
+
+<div class="activityLeft">
 
 <span class="material-symbols-rounded green">
 
@@ -103,23 +115,37 @@ verified
 
 </span>
 
-<div id="activityText">
+<span class="activityLabel">
 
-Loading activity...
+Demo Activity
+
+</span>
 
 </div>
 
+<marquee
+id="activityText"
+behavior="scroll"
+direction="left"
+scrollamount="5">
+
+Loading Demo Activity...
+
+</marquee>
+
 </div>
 
-<!-- Home -->
+<!-- HOME PAGE -->
 
 <section id="homePage" class="page active">
 
 <div class="walletCard">
 
+<div class="walletTop">
+
 <div>
 
-<p>Total Wallet</p>
+<p>Available Balance</p>
 
 <h1 id="wallet">
 
@@ -129,13 +155,35 @@ PKR 0
 
 </div>
 
-<div>
+<button id="toggleBalance">
 
-<span class="plan">
+<span class="material-symbols-rounded">
+
+visibility
+
+</span>
+
+</button>
+
+</div>
+
+<div class="walletBottom">
+
+<div class="plan">
 
 FREE PLAN
 
+</div>
+
+<div class="walletChip">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
 </span>
+
+</div>
 
 </div>
 
@@ -144,6 +192,12 @@ FREE PLAN
 <div class="statsGrid">
 
 <div class="stat">
+
+<span class="material-symbols-rounded">
+
+paid
+
+</span>
 
 <p>Today's Reward</p>
 
@@ -157,6 +211,12 @@ FREE PLAN
 
 <div class="stat">
 
+<span class="material-symbols-rounded">
+
+play_circle
+
+</span>
+
 <p>Ads Left</p>
 
 <h2 id="adsLeft">
@@ -169,6 +229,12 @@ FREE PLAN
 
 <div class="stat">
 
+<span class="material-symbols-rounded">
+
+task_alt
+
+</span>
+
 <p>Ads Watched</p>
 
 <h2 id="adsWatched">
@@ -180,6 +246,12 @@ FREE PLAN
 </div>
 
 <div class="stat">
+
+<span class="material-symbols-rounded">
+
+payments
+
+</span>
 
 <p>Daily Limit</p>
 
@@ -203,15 +275,11 @@ Rewarded Demo Ad
 
 <p>
 
-Watch one demo ad and receive
+Watch one demo advertisement and receive
 
-<strong>
+<strong>PKR 100</strong>
 
-PKR 100
-
-</strong>
-
-(Demo)
+(Demo Reward)
 
 </p>
 
@@ -219,7 +287,7 @@ PKR 100
 
 <span class="material-symbols-rounded">
 
-play_circle
+smart_display
 
 </span>
 
@@ -229,111 +297,135 @@ Watch Demo Ad
 
 <div id="timer"></div>
 
-</div><!-- VIP PAGE -->
-
-</section>
+</div><!-- =========================
+     VIP PAGE
+========================= -->
 
 <section id="vipPage" class="page">
 
 <h2 class="pageTitle">
 
-VIP Membership
+💎 VIP Membership
 
 </h2>
 
+<p class="pageSubTitle">
+
+Unlock more demo rewards with premium plans.
+
+</p>
+
 <div class="vipGrid">
+
+<!-- VIP 1 -->
 
 <div class="vipCard">
 
-<div class="vipTop">
+<div class="vipBadge">
 
-<h2>VIP 1</h2>
+VIP 1
 
-<span class="price">
+</div>
+
+<div class="vipPrice">
 
 PKR 2,000
-
-</span>
 
 </div>
 
 <ul>
 
-<li>✔ 10 Demo Ads Daily</li>
+<li>✅ 10 Demo Ads Daily</li>
 
-<li>✔ Fast Demo Rewards</li>
+<li>✅ Unlimited Demo Withdraw</li>
 
-<li>✔ Unlimited Demo Withdraw</li>
+<li>✅ Priority Support</li>
 
 </ul>
 
 <button class="buyVip" data-plan="VIP 1">
 
-Activate Plan
+Activate VIP 1
 
 </button>
 
 </div>
 
+<!-- VIP 2 -->
+
 <div class="vipCard premium">
 
-<div class="vipTop">
+<div class="popularTag">
 
-<h2>VIP 2</h2>
+MOST POPULAR
 
-<span class="price">
+</div>
+
+<div class="vipBadge">
+
+VIP 2
+
+</div>
+
+<div class="vipPrice">
 
 PKR 3,000
-
-</span>
 
 </div>
 
 <ul>
 
-<li>✔ 20 Demo Ads Daily</li>
+<li>✅ 20 Demo Ads Daily</li>
 
-<li>✔ Premium Dashboard</li>
+<li>✅ Premium Dashboard</li>
 
-<li>✔ Unlimited Demo Withdraw</li>
+<li>✅ Unlimited Demo Withdraw</li>
+
+<li>✅ Faster Reward Demo</li>
 
 </ul>
 
 <button class="buyVip" data-plan="VIP 2">
 
-Activate Plan
+Activate VIP 2
 
 </button>
 
 </div>
 
-<div class="vipCard gold">
+<!-- VIP 3 -->
 
-<div class="vipTop">
+<div class="vipCard diamond">
 
-<h2>VIP 3</h2>
+<div class="vipBadge">
 
-<span class="price">
+VIP 3
+
+</div>
+
+<div class="vipPrice">
 
 PKR 5,000
-
-</span>
 
 </div>
 
 <ul>
 
-<li>✔ 70 Demo Ads Daily</li>
+<li>✅ 70 Demo Ads Daily</li>
 
-<li>✔ Premium Badge</li>
+<li>✅ Diamond Badge</li>
 
-<li>✔ Unlimited Demo Withdraw</li>
+<li>✅ Unlimited Demo Withdraw</li>
+
+<li>✅ Premium Support</li>
+
+<li>✅ Exclusive Demo Benefits</li>
 
 </ul>
 
 <button class="buyVip" data-plan="VIP 3">
 
-Activate Plan
+Activate VIP 3
 
 </button>
 
@@ -341,19 +433,27 @@ Activate Plan
 
 </div>
 
-</section>
-
-<!-- WITHDRAW PAGE -->
+</section><!-- =========================
+     WITHDRAW PAGE
+========================= -->
 
 <section id="withdrawPage" class="page">
 
 <h2 class="pageTitle">
 
-Withdraw (Demo)
+💸 Withdraw (Demo)
 
 </h2>
 
+<p class="pageSubTitle">
+
+Submit your demo withdrawal request.
+
+</p>
+
 <div class="glassCard">
+
+<label>Withdrawal Method</label>
 
 <select id="method">
 
@@ -363,59 +463,79 @@ Withdraw (Demo)
 
 </select>
 
+<label>Full Name</label>
+
 <input
 type="text"
-placeholder="Full Name"
-id="withdrawName">
+id="withdrawName"
+placeholder="Enter Full Name">
+
+<label>Phone Number</label>
 
 <input
 type="tel"
-placeholder="Phone Number"
-id="withdrawPhone">
+id="withdrawPhone"
+placeholder="03XXXXXXXXX">
+
+<label>Amount</label>
 
 <input
 type="number"
-placeholder="Amount"
-id="withdrawAmount">
+id="withdrawAmount"
+placeholder="Minimum 50">
 
-<p class="limit">
+<div class="limitCard">
 
-Free Plan Daily Limit:
-<strong>
+<span class="material-symbols-rounded">
 
-PKR 50
+info
 
-</strong>
+</span>
 
-</p>
+<div>
+
+<b>Demo Limit</b>
+
+<p>Free Plan: PKR 50 Daily</p>
+
+</div>
+
+</div>
 
 <button id="withdrawBtn">
 
-Submit Request
+<span class="material-symbols-rounded">
+
+payments
+
+</span>
+
+Submit Demo Request
 
 </button>
 
 </div>
 
-</section><!-- PROFILE PAGE -->
+</section>
+
+<!-- =========================
+     PROFILE PAGE
+========================= -->
 
 <section id="profilePage" class="page">
 
 <h2 class="pageTitle">
-My Profile
+
+👤 My Profile
+
 </h2>
 
 <div class="profileCard">
 
-<div class="profileImage">
-
-<span class="material-symbols-rounded">
-
-account_circle
-
-</span>
-
-</div>
+<img
+src="assets/avatar.png"
+class="avatar"
+alt="Profile">
 
 <h2 id="profileName">
 
@@ -433,31 +553,29 @@ guest@example.com
 
 <div>
 
-<p>Current Plan</p>
-
-<h3 id="profilePlan">
-
-FREE
-
-</h3>
-
-</div>
-
-<div>
-
-<p>Wallet</p>
-
 <h3 id="profileWallet">
 
 PKR 0
 
 </h3>
 
+<p>Wallet</p>
+
 </div>
 
 <div>
 
-<p>Ads Watched</p>
+<h3 id="profileRewards">
+
+PKR 0
+
+</h3>
+
+<p>Rewards</p>
+
+</div>
+
+<div>
 
 <h3 id="profileAds">
 
@@ -465,17 +583,19 @@ PKR 0
 
 </h3>
 
+<p>Ads Watched</p>
+
 </div>
 
 <div>
 
-<p>Total Rewards</p>
+<h3 id="profilePlan">
 
-<h3 id="profileRewards">
-
-PKR 0
+FREE PLAN
 
 </h3>
+
+<p>Current Plan</p>
 
 </div>
 
@@ -491,13 +611,15 @@ Logout
 
 </section>
 
-<!-- SUPPORT PAGE -->
+<!-- =========================
+     SUPPORT PAGE
+========================= -->
 
 <section id="supportPage" class="page">
 
 <h2 class="pageTitle">
 
-Support
+📞 Support
 
 </h2>
 
@@ -517,14 +639,14 @@ Need Help?
 
 <p>
 
-For any questions, contact our support team.
+Our support team is available for demo assistance.
 
 </p>
 
 <a
-class="supportBtn"
 href="https://wa.me/923162423759"
-target="_blank">
+target="_blank"
+class="supportBtn">
 
 <span class="material-symbols-rounded">
 
@@ -538,14 +660,13 @@ Chat on WhatsApp
 
 </div>
 
-</section>
-
-<!-- BOTTOM NAVIGATION -->
+</section><!-- =========================
+     PREMIUM BOTTOM NAVIGATION
+========================= -->
 
 <nav class="bottomNav">
 
-<button class="navItem active"
-data-page="homePage">
+<button class="navItem active" data-page="homePage">
 
 <span class="material-symbols-rounded">
 
@@ -553,12 +674,11 @@ home
 
 </span>
 
-<p>Home</p>
+<span>Home</span>
 
 </button>
 
-<button class="navItem"
-data-page="vipPage">
+<button class="navItem" data-page="vipPage">
 
 <span class="material-symbols-rounded">
 
@@ -566,12 +686,21 @@ workspace_premium
 
 </span>
 
-<p>VIP</p>
+<span>VIP</span>
 
 </button>
 
-<button class="navItem"
-data-page="withdrawPage">
+<button class="navItem centerBtn" data-page="homePage">
+
+<span class="material-symbols-rounded">
+
+play_circle
+
+</span>
+
+</button>
+
+<button class="navItem" data-page="withdrawPage">
 
 <span class="material-symbols-rounded">
 
@@ -579,12 +708,11 @@ payments
 
 </span>
 
-<p>Withdraw</p>
+<span>Withdraw</span>
 
 </button>
 
-<button class="navItem"
-data-page="profilePage">
+<button class="navItem" data-page="profilePage">
 
 <span class="material-symbols-rounded">
 
@@ -592,32 +720,29 @@ person
 
 </span>
 
-<p>Profile</p>
+<span>Profile</span>
 
 </button>
 
-<button class="navItem"
-data-page="supportPage">
+</nav>
 
-<span class="material-symbols-rounded">
-
-headset_mic
-
-</span>
-
-<p>Support</p>
-
-</button>
-
-</nav><!-- LOGIN MODAL -->
+<!-- =========================
+     LOGIN MODAL
+========================= -->
 
 <div class="modal" id="loginModal">
 
 <div class="modalBox">
 
-<h2>Login</h2>
+<img src="assets/logo.png" class="modalLogo">
 
-<p>Login to continue using Eva Earning Demo.</p>
+<h2>Welcome to Eva Earning</h2>
+
+<p>
+
+Login to continue using Demo Mode.
+
+</p>
 
 <input
 type="text"
@@ -645,41 +770,33 @@ Cancel
 
 </div>
 
-<!-- VIP PAYMENT MODAL -->
+<!-- =========================
+     VIP PAYMENT MODAL
+========================= -->
 
 <div class="modal" id="paymentModal">
 
 <div class="modalBox">
 
+<img src="assets/logo.png" class="modalLogo">
+
 <h2>VIP Payment Details</h2>
 
 <div class="paymentCard">
 
-<p>
+<p><strong>Bank Name</strong></p>
 
-<strong>Bank Name</strong>
-
-<br>
-
-Telenor Microfinance Bank
-
-</p>
-
-<p>
-
-<strong>Account Name</strong>
+<p>Telenor Microfinance Bank</p>
 
 <br>
 
-Shehroz
+<p><strong>Account Name</strong></p>
 
-</p>
+<p>Shehroz</p>
 
-<p>
+<br>
 
-<strong>IBAN</strong>
-
-</p>
+<p><strong>IBAN</strong></p>
 
 <div class="ibanBox">
 
@@ -711,7 +828,7 @@ content_copy
 
 Transfer the required amount according to your selected VIP plan.
 
-In a real application, plan activation should occur only after secure backend verification.
+Plan activation in a real application should only happen after secure backend verification.
 
 </p>
 
@@ -730,4 +847,5 @@ Close
 <script src="script.js"></script>
 
 </body>
+
 </html>
