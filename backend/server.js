@@ -9,6 +9,7 @@ import dotenv from "dotenv";
 
 import authRoutes from "./routes/auth.js";
 import withdrawRoutes from "./routes/withdraw.js";
+import adminRoutes from "./routes/admin.js";
 
 
 dotenv.config();
@@ -58,6 +59,12 @@ app.use(
 app.use(
     "/api/withdraw",
     withdrawRoutes
+);
+
+
+app.use(
+    "/api/admin",
+    adminRoutes
 );
 
 
