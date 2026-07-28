@@ -1,240 +1,216 @@
-/* ====================================
-   EVA EARNING PREMIUM
-   SCRIPT.JS - PART 1
-==================================== */
+/* =====================================
+   EVA EARNING REAL APP SCRIPT
+   PART 1/8
+===================================== */
 
-const splash=document.getElementById("splash");
-const app=document.getElementById("app");
+
+const API = "/api";
+
+let currentUser = JSON.parse(localStorage.getItem("user")) || null;
+
+let wallet = 0;
+let reward = 0;
+let ads = 5;
+let watched = 0;
+let plan = "FREE PLAN";
+
+
+/* =========================
+   SPLASH SCREEN
+========================= */
+
+const splash = document.getElementById("splash");
+const app = document.getElementById("app");
+
 
 window.addEventListener("load",()=>{
 
 setTimeout(()=>{
 
 splash.style.opacity="0";
-splash.style.transition=".6s";
+splash.style.transition=".5s";
+
 
 setTimeout(()=>{
 
 splash.style.display="none";
+
 app.classList.remove("hidden");
 
-},600);
+loadUser();
+
+},500);
+
 
 },5000);
 
+
 });
 
-/* ==========================
-   LOCAL STORAGE
-========================== */
 
-let wallet=Number(localStorage.getItem("wallet"))||0;
-let reward=Number(localStorage.getItem("reward"))||0;
-let ads=Number(localStorage.getItem("ads"))||5;
-let watched=Number(localStorage.getItem("watched"))||0;
 
-let plan=localStorage.getItem("plan")||"FREE PLAN";
-
-let username=localStorage.getItem("username")||"Guest User";
-let email=localStorage.getItem("email")||"guest@example.com";
-
-let balanceVisible=true;
-
-/* ==========================
+/* =========================
    ELEMENTS
-========================== */
+========================= */
+
 
 const walletText=document.getElementById("wallet");
 const rewardText=document.getElementById("todayReward");
 const adsLeft=document.getElementById("adsLeft");
 const adsWatched=document.getElementById("adsWatched");
 
+
 const profileWallet=document.getElementById("profileWallet");
 const profileRewards=document.getElementById("profileRewards");
 const profileAds=document.getElementById("profileAds");
 const profilePlan=document.getElementById("profilePlan");
+
 const profileName=document.getElementById("profileName");
 const profileEmail=document.getElementById("profileEmail");
 
-/* ==========================
+
+
+/* =========================
    UPDATE UI
-========================== */
+========================= */
+
 
 function updateUI(){
 
-walletText.innerHTML=balanceVisible?`PKR ${wallet}`:"PKR •••••";
+
+if(walletText){
+
+walletText.innerHTML=
+`PKR ${wallet}`;
+
+}
+
+
+if(rewardText){
 
 rewardText.innerHTML=reward;
+
+}
+
+
+if(adsLeft){
+
 adsLeft.innerHTML=ads;
+
+}
+
+
+if(adsWatched){
+
 adsWatched.innerHTML=watched;
 
-profileWallet.innerHTML=`PKR ${wallet}`;
-profileRewards.innerHTML=`PKR ${reward}`;
-profileAds.innerHTML=watched;
-profilePlan.innerHTML=plan;
-profileName.innerHTML=username;
-profileEmail.innerHTML=email;
+}
+
+
+
+if(currentUser){
+
+
+profileName.innerHTML=currentUser.name;
+
+profileEmail.innerHTML=currentUser.phone;
+
+
+profileWallet.innerHTML=
+`PKR ${wallet}`;
+
+
+profileRewards.innerHTML=
+`PKR ${reward}`;
+
+
+profileAds.innerHTML=
+watched;
+
+
+profilePlan.innerHTML=
+plan;
+
+
+}else{
+
+
+profileName.innerHTML="Guest User";
+
+profileEmail.innerHTML="Login Required";
+
 
 }
 
-updateUI();/* ==========================
-   LIVE ACTIVITY TICKER
-========================== */
 
-const activity=document.getElementById("activityText");
-
-const names=[
-"Ahmad",
-"Ali",
-"Usman",
-"Hamza",
-"Bilal",
-"Ayesha",
-"Sana",
-"Fatima",
-"Hina",
-"Zoya",
-"Zain",
-"Umer",
-"Danish",
-"Rizwan",
-"Abdullah",
-"Laiba",
-"Noor",
-"Anaya",
-"Iqra",
-"Saad"
-];
-
-const actions=[
-"withdrew",
-"received",
-"earned",
-"claimed"
-];
-
-const amounts=[
-100,
-200,
-300,
-500,
-700,
-900,
-1000,
-1200,
-1500,
-2000,
-2500,
-3000,
-5000,
-8000,
-10000
-];
-
-function activityTicker(){
-
-const randomName=
-names[Math.floor(Math.random()*names.length)];
-
-const randomAction=
-actions[Math.floor(Math.random()*actions.length)];
-
-const randomAmount=
-amounts[Math.floor(Math.random()*amounts.length)];
-
-activity.innerHTML=
-`✅ <b>${randomName}</b> ${randomAction} <span style="color:#16A34A;">PKR ${randomAmount}</span>`;
 
 }
 
-activityTicker();
 
-setInterval(activityTicker,2500);
 
-/* ==========================
-   BALANCE SHOW / HIDE
-========================== */
+/* =========================
+   LOAD USER
+========================= */
 
-const toggleBtn=document.getElementById("toggleBalance");
 
-if(toggleBtn){
+function loadUser(){
 
-toggleBtn.onclick=()=>{
 
-balanceVisible=!balanceVisible;
-
-toggleBtn.innerHTML=balanceVisible
-?'<span class="material-symbols-rounded">visibility</span>'
-:'<span class="material-symbols-rounded">visibility_off</span>';
+if(!currentUser){
 
 updateUI();
 
-};
+return;
 
 }
 
-/* ==========================
-   PREMIUM TOAST
-========================== */
 
-function showToast(message){
 
-const toast=document.createElement("div");
+wallet=currentUser.wallet || 0;
 
-toast.className="toast";
+reward=currentUser.reward || 0;
 
-toast.innerHTML=message;
+ads=currentUser.ads || 5;
 
-document.body.appendChild(toast);
+watched=currentUser.watchedAds || 0;
 
-setTimeout(()=>{
+plan=currentUser.plan || "FREE PLAN";
 
-toast.classList.add("show");
 
-},100);
+updateUI();
 
-setTimeout(()=>{
 
-toast.classList.remove("show");
-
-setTimeout(()=>{
-
-toast.remove();
-
-},300);
-
-},2500);
-
-}/* ==========================
-   THEME + LOGIN SYSTEM
-========================== */
-
-const themeBtn=document.getElementById("themeBtn");
-
-if(localStorage.getItem("theme")=="dark"){
-document.body.classList.add("dark");
 }
 
-themeBtn.onclick=()=>{
 
-document.body.classList.toggle("dark");
 
-localStorage.setItem(
-"theme",
-document.body.classList.contains("dark")
-?"dark":"light"
-);
+updateUI();/* =====================================
+   PART 2/8
+   REAL LOGIN + REGISTER SYSTEM
+===================================== */
 
-showToast("🎨 Theme Updated");
 
-};
+/* =========================
+   LOGIN ELEMENTS
+========================= */
 
-/* ==========================
-   LOGIN
-========================== */
 
-const loginBtn=document.getElementById("loginBtn");
-const loginModal=document.getElementById("loginModal");
+const loginBtn = document.getElementById("loginBtn");
+
+const loginModal = document.getElementById("loginModal");
+
+const loginSubmit = document.getElementById("loginSubmit");
+
+const closeModal = document.querySelector(".closeModal");
+
+
+
+/* =========================
+   OPEN LOGIN
+========================= */
+
+
+if(loginBtn){
 
 loginBtn.onclick=()=>{
 
@@ -242,489 +218,1708 @@ loginModal.classList.add("show");
 
 };
 
-document.querySelector(".closeModal").onclick=()=>{
+}
+
+
+
+if(closeModal){
+
+closeModal.onclick=()=>{
 
 loginModal.classList.remove("show");
 
 };
 
-document.getElementById("loginSubmit").onclick=()=>{
+}
 
-const name=document.getElementById("userName").value.trim();
 
-const mail=document.getElementById("userEmail").value.trim();
 
-if(name==""){
 
-showToast("⚠ Enter your full name");
+/* =========================
+   CREATE ACCOUNT / LOGIN
+========================= */
+
+
+loginSubmit.onclick=async()=>{
+
+
+const name =
+document.getElementById("userName").value.trim();
+
+
+const phone =
+document.getElementById("userEmail").value.trim();
+
+
+if(!name || !phone){
+
+
+showToast("⚠ Name and Phone required");
+
 
 return;
 
+
 }
 
-username=name;
-email=mail||"guest@example.com";
 
-localStorage.setItem("username",username);
-localStorage.setItem("email",email);
 
-updateUI();
 
-loginModal.classList.remove("show");
+let password =
+prompt("Enter Password");
 
-showToast("👋 Welcome "+username);
 
-};
 
-/* ==========================
-   WATCH AD
-========================== */
+if(!password){
 
-const watchBtn=document.getElementById("watchAd");
-const timer=document.getElementById("timer");
 
-watchBtn.onclick=()=>{
-
-if(ads<=0){
-
-showToast("❌ No Ads Remaining Today");
+showToast("⚠ Password required");
 
 return;
 
-}
-
-watchBtn.disabled=true;
-
-let sec=15;
-
-timer.innerHTML=`⏳ ${sec}s`;
-
-const countdown=setInterval(()=>{
-
-sec--;
-
-timer.innerHTML=`⏳ ${sec}s`;
-
-if(sec<=0){
-
-clearInterval(countdown);
-
-wallet+=100;
-reward+=100;
-ads--;
-watched++;
-
-localStorage.setItem("wallet",wallet);
-localStorage.setItem("reward",reward);
-localStorage.setItem("ads",ads);
-localStorage.setItem("watched",watched);
-
-updateUI();
-
-timer.innerHTML="🎉 +PKR 100 Added";
-
-watchBtn.disabled=false;
-
-showToast("✅ Reward Added");
-
-if(navigator.vibrate){
-
-navigator.vibrate(150);
 
 }
 
-}
 
-},1000);
 
-};/* ==========================
-   VIP PLANS
-========================== */
 
-const paymentModal=document.getElementById("paymentModal");
-
-let selectedPlan="FREE PLAN";
-
-document.querySelectorAll(".buyVip").forEach(btn=>{
-
-btn.onclick=()=>{
-
-selectedPlan=btn.dataset.plan;
-
-paymentModal.classList.add("show");
-
-showToast("💎 "+selectedPlan+" Selected");
-
-};
-
-});
-
-/* ==========================
-   PAYMENT MODAL
-========================== */
-
-document.getElementById("closePayment").onclick=()=>{
-
-paymentModal.classList.remove("show");
-
-};
-
-document.getElementById("copyIban").onclick=async()=>{
 
 try{
 
-await navigator.clipboard.writeText(
-"PK88TMFB0000000037817113"
-);
 
-showToast("📋 IBAN Copied");
+/*
+First try login
+*/
 
-}catch{
 
-showToast("❌ Copy Failed");
+let loginResponse =
+await fetch(`${API}/login`,{
 
-}
 
-};
+method:"POST",
 
-/* ==========================
-   BOTTOM NAVIGATION
-========================== */
 
-const navItems=document.querySelectorAll(".navItem");
-const pages=document.querySelectorAll(".page");
+headers:{
 
-navItems.forEach(btn=>{
+"Content-Type":"application/json"
 
-btn.onclick=()=>{
+},
 
-const page=btn.dataset.page;
 
-if(!page) return;
+body:JSON.stringify({
 
-navItems.forEach(item=>
-item.classList.remove("active")
-);
+phone:phone,
 
-btn.classList.add("active");
+password:password
 
-pages.forEach(p=>
-p.classList.remove("active")
-);
+})
 
-document
-.getElementById(page)
-.classList.add("active");
-
-window.scrollTo({
-
-top:0,
-behavior:"smooth"
 
 });
 
-};
 
-});
 
-/* ==========================
-   CLOSE MODALS
-========================== */
+let loginData =
+await loginResponse.json();
 
-window.onclick=(e)=>{
 
-if(e.target===loginModal){
+
+
+
+if(loginData.success){
+
+
+currentUser =
+loginData.user;
+
+
+localStorage.setItem(
+"user",
+JSON.stringify(currentUser)
+);
+
+
 
 loginModal.classList.remove("show");
 
-}
 
-if(e.target===paymentModal){
+loadUser();
 
-paymentModal.classList.remove("show");
 
-}
-
-};/* ==========================
-   WITHDRAW SYSTEM
-========================== */
-
-document.getElementById("withdrawBtn").onclick=()=>{
-
-const name=document.getElementById("withdrawName").value.trim();
-const phone=document.getElementById("withdrawPhone").value.trim();
-const amount=Number(document.getElementById("withdrawAmount").value);
-const method=document.getElementById("method").value;
-
-if(name==""||phone==""||amount<=0){
-
-showToast("⚠ Please fill all fields");
-
-return;
-
-}
-
-if(amount>wallet){
-
-showToast("❌ Insufficient Wallet Balance");
-
-return;
-
-}
-
-if(plan==="FREE PLAN" && amount>50){
-
-showToast("❌ Free Plan Daily Limit is PKR 50");
-
-return;
-
-}
-
-wallet-=amount;
-
-localStorage.setItem("wallet",wallet);
-
-let history=JSON.parse(
-localStorage.getItem("withdrawHistory")||"[]"
+showToast(
+"✅ Login Successful"
 );
 
-history.unshift({
 
-name,
-phone,
-method,
-amount,
-plan,
-status:"Pending",
-date:new Date().toLocaleString()
+return;
 
-});
-
-localStorage.setItem(
-"withdrawHistory",
-JSON.stringify(history)
-);
-
-updateUI();
-
-showToast("✅ Withdraw Request Submitted");
-
-document.getElementById("withdrawName").value="";
-document.getElementById("withdrawPhone").value="";
-document.getElementById("withdrawAmount").value="";
-
-};
-
-/* ==========================
-   LOGOUT
-========================== */
-
-document.getElementById("logoutBtn").onclick=()=>{
-
-if(!confirm("Logout from Eva Earning?")) return;
-
-localStorage.removeItem("username");
-localStorage.removeItem("email");
-
-username="Guest User";
-email="guest@example.com";
-
-updateUI();
-
-showToast("👋 Logged Out");
-
-};
-
-/* ==========================
-   DAILY RESET
-========================== */
-
-const today=new Date().toDateString();
-
-const lastDay=
-localStorage.getItem("lastDay");
-
-if(lastDay!==today){
-
-ads=(plan==="FREE PLAN")?5:10;
-reward=0;
-
-localStorage.setItem("ads",ads);
-localStorage.setItem("reward",reward);
-localStorage.setItem("lastDay",today);
-
-updateUI();
 
 }
 
-/* ==========================
-   AUTO SAVE
-========================== */
 
-function saveData(){
 
-localStorage.setItem("wallet",wallet);
-localStorage.setItem("reward",reward);
-localStorage.setItem("ads",ads);
-localStorage.setItem("watched",watched);
-localStorage.setItem("plan",plan);
 
-}
-
-setInterval(saveData,3000);
-
-/* ==========================
-   APP START
-========================== */
-
-updateUI();
-
-showToast("🚀 Eva Earning Ready");
-
-console.log("Eva Earning Premium Loaded");/* ==========================
-   PREMIUM FEATURES
-========================== */
-
-/* Floating Withdraw Notification */
-
-const floatingNames=[
-"Ahmad","Ali","Hamza","Bilal","Usman",
-"Ayesha","Fatima","Hina","Zain","Umer",
-"Saad","Danish","Noor","Iqra","Laiba",
-"Abdullah","Anaya","Rizwan","Sana","Zoya"
-];
-
-const floatingAmounts=[
-500,700,900,1000,1200,
-1500,1800,2000,2500,
-3000,3500,5000,8000,
-10000,12000
-];
-
-function liveWithdraw(){
-
-const box=document.createElement("div");
-
-box.className="liveWithdraw";
-
-const person=
-floatingNames[Math.floor(Math.random()*floatingNames.length)];
-
-const amount=
-floatingAmounts[Math.floor(Math.random()*floatingAmounts.length)];
-
-box.innerHTML=`
-<div class="liveLeft">
-<span class="material-symbols-rounded">
-verified
-</span>
-</div>
-
-<div class="liveRight">
-
-<b>${person}</b><br>
-
-<span>
-Withdraw PKR ${amount}
-</span>
-
-</div>
-`;
-
-document.body.appendChild(box);
-
-setTimeout(()=>{
-
-box.classList.add("show");
-
-},200);
-
-setTimeout(()=>{
-
-box.classList.remove("show");
-
-setTimeout(()=>{
-
-box.remove();
-
-},500);
-
-},3500);
-
-}
-
-setInterval(liveWithdraw,6000);
-
-/* ==========================
-   REWARDED ADS READY
-========================== */
-
-function showRewardedAd(callback){
 
 /*
-Replace this section later with
-Monetag / Adsterra Rewarded Ads.
-
-Example:
-
-show_9675345().then(()=>{
-callback();
-});
-
+If login failed,
+create new account
 */
 
-setTimeout(()=>{
 
-callback();
 
-},15000);
+let registerResponse =
+await fetch(`${API}/register`,{
 
-}
 
-/* ==========================
-   BALANCE ANIMATION
-========================== */
+method:"POST",
 
-function animateWallet(){
 
-walletText.animate([
+headers:{
 
-{
-transform:"scale(1)"
+"Content-Type":"application/json"
+
 },
 
-{
-transform:"scale(1.08)"
-},
 
-{
-transform:"scale(1)"
-}
+body:JSON.stringify({
 
-],{
+name:name,
 
-duration:400
+phone:phone,
+
+password:password
+
+})
+
 
 });
 
+
+
+
+let registerData =
+await registerResponse.json();
+
+
+
+
+if(registerData.success){
+
+
+
+showToast(
+"✅ Account Created"
+);
+
+
+
+/*
+Auto login after signup
+*/
+
+
+let newLogin =
+await fetch(`${API}/login`,{
+
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+
+body:JSON.stringify({
+
+phone:phone,
+
+password:password
+
+})
+
+
+});
+
+
+
+let newUser =
+await newLogin.json();
+
+
+
+currentUser =
+newUser.user;
+
+
+
+localStorage.setItem(
+"user",
+JSON.stringify(currentUser)
+);
+
+
+
+loginModal.classList.remove("show");
+
+
+loadUser();
+
+
+
+}else{
+
+
+showToast(
+registerData.message
+);
+
+
 }
 
-/* Reward Animation */
 
-const oldUpdate=updateUI;
 
-updateUI=function(){
+}catch(error){
 
-oldUpdate();
 
-animateWallet();
+console.log(error);
+
+
+showToast(
+"❌ Server Error"
+);
+
+
+}
+
+
 
 };
 
-/* ==========================
-   START LIVE SYSTEM
-========================== */
 
-liveWithdraw();
 
-console.log("Premium Features Loaded ✅");
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+
+
+if(logoutBtn){
+
+
+logoutBtn.onclick=()=>{
+
+
+localStorage.removeItem("user");
+
+
+currentUser=null;
+
+
+wallet=0;
+
+reward=0;
+
+ads=5;
+
+watched=0;
+
+plan="FREE PLAN";
+
+
+updateUI();
+
+
+showToast(
+"👋 Logged Out"
+);
+
+
+};
+
+
+}/* =====================================
+   PART 3/8
+   WATCH AD + REWARD SYSTEM
+===================================== */
+
+
+const watchBtn =
+document.getElementById("watchAd");
+
+
+const timer =
+document.getElementById("timer");
+
+
+
+
+if(watchBtn){
+
+
+watchBtn.onclick=()=>{
+
+
+
+// Login check
+
+if(!currentUser){
+
+
+showToast(
+"⚠ Please Login First"
+);
+
+
+loginModal.classList.add("show");
+
+
+return;
+
+
+}
+
+
+
+
+if(ads<=0){
+
+
+showToast(
+"❌ No Ads Remaining Today"
+);
+
+
+return;
+
+
+}
+
+
+
+
+watchBtn.disabled=true;
+
+
+let seconds=15;
+
+
+
+timer.innerHTML=
+`⏳ ${seconds}s`;
+
+
+
+let countdown =
+setInterval(()=>{
+
+
+
+seconds--;
+
+
+timer.innerHTML=
+`⏳ ${seconds}s`;
+
+
+
+
+if(seconds<=0){
+
+
+clearInterval(countdown);
+
+
+
+wallet += 100;
+
+reward += 100;
+
+ads--;
+
+watched++;
+
+
+
+
+
+updateUI();
+
+
+
+
+saveLocalUser();
+
+
+
+
+timer.innerHTML=
+"🎉 PKR 100 Added";
+
+
+
+showToast(
+"✅ Reward Added"
+);
+
+
+
+
+watchBtn.disabled=false;
+
+
+
+}
+
+
+
+},1000);
+
+
+
+
+
+};
+
+
+
+}
+
+
+
+
+/* =========================
+   SAVE USER DATA
+========================= */
+
+
+function saveLocalUser(){
+
+
+if(!currentUser) return;
+
+
+
+currentUser.wallet =
+wallet;
+
+
+currentUser.reward =
+reward;
+
+
+currentUser.ads =
+ads;
+
+
+currentUser.watchedAds =
+watched;
+
+
+currentUser.plan =
+plan;
+
+
+
+localStorage.setItem(
+"user",
+JSON.stringify(currentUser)
+);
+
+
+
+}/* =====================================
+   PART 4/8
+   WITHDRAW SYSTEM
+===================================== */
+
+
+const withdrawBtn =
+document.getElementById("withdrawBtn");
+
+
+
+const methodInput =
+document.getElementById("method");
+
+
+const nameInput =
+document.getElementById("withdrawName");
+
+
+const phoneInput =
+document.getElementById("withdrawPhone");
+
+
+const amountInput =
+document.getElementById("withdrawAmount");
+
+
+
+
+
+if(withdrawBtn){
+
+
+withdrawBtn.onclick = async()=>{
+
+
+
+if(!currentUser){
+
+
+showToast(
+"⚠ Please Login First"
+);
+
+
+loginModal.classList.add("show");
+
+
+return;
+
+
+}
+
+
+
+
+
+let method =
+methodInput.value;
+
+
+let name =
+nameInput.value.trim();
+
+
+let number =
+phoneInput.value.trim();
+
+
+let amount =
+Number(amountInput.value);
+
+
+
+
+
+if(!name || !number || !amount){
+
+
+showToast(
+"⚠ Fill all details"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+// Free plan limit
+
+
+if(plan==="FREE PLAN" && amount > 50){
+
+
+showToast(
+"⚠ Free Plan daily withdrawal limit is PKR 50"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+if(amount < 50){
+
+
+showToast(
+"⚠ Minimum withdrawal PKR 50"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+try{
+
+
+
+let response =
+await fetch(`${API}/withdraw`,{
+
+
+method:"POST",
+
+
+headers:{
+
+
+"Content-Type":"application/json"
+
+
+},
+
+
+body:JSON.stringify({
+
+
+phone:currentUser.phone,
+
+
+method:method,
+
+
+name:name,
+
+
+number:number,
+
+
+amount:amount
+
+
+
+})
+
+
+});
+
+
+
+
+
+
+let data =
+await response.json();
+
+
+
+
+
+
+if(data.success){
+
+
+
+showToast(
+"✅ Withdraw Request Pending"
+);
+
+
+
+// clear fields
+
+
+nameInput.value="";
+
+phoneInput.value="";
+
+amountInput.value="";
+
+
+
+}else{
+
+
+showToast(
+data.message
+);
+
+
+}
+
+
+
+}catch(error){
+
+
+console.log(error);
+
+
+showToast(
+"❌ Server Error"
+);
+
+
+}
+
+
+
+
+};
+
+
+
+}/* =====================================
+   PART 5/8
+   NAVIGATION + TOAST + VIP
+===================================== */
+
+
+
+/* =========================
+   TOAST SYSTEM
+========================= */
+
+
+function showToast(message){
+
+
+let oldToast =
+document.querySelector(".evaToast");
+
+
+if(oldToast){
+
+oldToast.remove();
+
+}
+
+
+
+let toast =
+document.createElement("div");
+
+
+toast.className="evaToast";
+
+
+toast.innerHTML=message;
+
+
+
+document.body.appendChild(toast);
+
+
+
+
+setTimeout(()=>{
+
+
+toast.classList.add("show");
+
+
+},100);
+
+
+
+setTimeout(()=>{
+
+
+toast.classList.remove("show");
+
+
+
+setTimeout(()=>{
+
+toast.remove();
+
+},300);
+
+
+
+},3000);
+
+
+
+}
+
+
+
+
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
+
+
+const navItems =
+document.querySelectorAll(".navItem");
+
+
+
+const pages =
+document.querySelectorAll(".page");
+
+
+
+
+navItems.forEach(btn=>{
+
+
+btn.onclick=()=>{
+
+
+let target =
+btn.dataset.page;
+
+
+
+if(!target) return;
+
+
+
+
+pages.forEach(page=>{
+
+
+page.classList.remove("active");
+
+
+});
+
+
+
+
+let selected =
+document.getElementById(target);
+
+
+
+if(selected){
+
+selected.classList.add("active");
+
+
+}
+
+
+
+
+navItems.forEach(item=>{
+
+
+item.classList.remove("active");
+
+
+});
+
+
+
+btn.classList.add("active");
+
+
+
+};
+
+
+
+});
+
+
+
+
+
+/* =========================
+   VIP SYSTEM
+========================= */
+
+
+const vipButtons =
+document.querySelectorAll(".buyVip");
+
+
+
+vipButtons.forEach(btn=>{
+
+
+btn.onclick=()=>{
+
+
+
+if(!currentUser){
+
+
+showToast(
+"⚠ Login First For VIP"
+);
+
+
+
+loginModal.classList.add("show");
+
+
+return;
+
+
+}
+
+
+
+let selectedPlan =
+btn.dataset.plan;
+
+
+
+showToast(
+
+"💎 "+selectedPlan+
+" Payment Required"
+
+);
+
+
+
+};
+
+
+
+});
+
+
+
+
+
+/* =========================
+   PROFILE UPDATE BUTTON
+========================= */
+
+
+function refreshProfile(){
+
+
+if(!currentUser){
+
+return;
+
+}
+
+
+
+profileName.innerHTML =
+currentUser.name;
+
+
+
+profileEmail.innerHTML =
+currentUser.phone;
+
+
+
+profileWallet.innerHTML =
+`PKR ${wallet}`;
+
+
+
+profileRewards.innerHTML =
+`PKR ${reward}`;
+
+
+
+profileAds.innerHTML =
+watched;
+
+
+
+profilePlan.innerHTML =
+plan;
+
+
+
+}
+
+
+
+refreshProfile();/* =====================================
+   PART 6/8
+   BETTER LOGIN + ACTIVITY SYSTEM
+===================================== */
+
+
+
+/* =========================
+   ADD PASSWORD FIELD
+========================= */
+
+
+const passwordInput =
+document.createElement("input");
+
+
+passwordInput.type="password";
+
+passwordInput.id="userPassword";
+
+passwordInput.placeholder="Password";
+
+
+
+const emailInput =
+document.getElementById("userEmail");
+
+
+
+if(emailInput){
+
+
+emailInput.parentNode.insertBefore(
+passwordInput,
+emailInput.nextSibling
+);
+
+
+}
+
+
+
+
+/* =========================
+   UPDATE LOGIN BUTTON
+========================= */
+
+
+if(loginSubmit){
+
+
+
+loginSubmit.onclick=async()=>{
+
+
+
+const name =
+document.getElementById("userName").value.trim();
+
+
+
+const phone =
+document.getElementById("userEmail").value.trim();
+
+
+
+const password =
+document.getElementById("userPassword").value.trim();
+
+
+
+
+
+if(!phone || !password){
+
+
+showToast(
+"⚠ Phone and Password required"
+);
+
+
+return;
+
+
+}
+
+
+
+
+try{
+
+
+
+// LOGIN FIRST
+
+
+let loginResponse =
+await fetch(`${API}/login`,{
+
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+
+body:JSON.stringify({
+
+phone:phone,
+
+password:password
+
+})
+
+
+});
+
+
+
+let loginData =
+await loginResponse.json();
+
+
+
+
+
+if(loginData.success){
+
+
+currentUser =
+loginData.user;
+
+
+localStorage.setItem(
+"user",
+JSON.stringify(currentUser)
+);
+
+
+
+loginModal.classList.remove("show");
+
+
+loadUser();
+
+
+
+showToast(
+"✅ Welcome Back"
+);
+
+
+return;
+
+
+}
+
+
+
+
+// CREATE ACCOUNT
+
+
+let registerResponse =
+await fetch(`${API}/register`,{
+
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+
+body:JSON.stringify({
+
+name:name || "Eva User",
+
+phone:phone,
+
+password:password
+
+
+})
+
+
+});
+
+
+
+let registerData =
+await registerResponse.json();
+
+
+
+if(registerData.success){
+
+
+showToast(
+"✅ Account Created"
+);
+
+
+
+let autoLogin =
+await fetch(`${API}/login`,{
+
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+
+body:JSON.stringify({
+
+phone:phone,
+
+password:password
+
+})
+
+
+});
+
+
+
+let userData =
+await autoLogin.json();
+
+
+
+currentUser =
+userData.user;
+
+
+
+localStorage.setItem(
+"user",
+JSON.stringify(currentUser)
+);
+
+
+
+loginModal.classList.remove("show");
+
+
+loadUser();
+
+
+
+}else{
+
+
+showToast(
+registerData.message
+);
+
+
+}
+
+
+
+
+}catch(error){
+
+
+showToast(
+"❌ Connection Error"
+);
+
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
+
+/* =========================
+   WITHDRAW ACTIVITY BAR
+========================= */
+
+
+const names=[
+
+"Ahmad",
+
+"Zaka",
+
+"Ali",
+
+"Hamza",
+
+"Usman",
+
+"Ayesha",
+
+"Sara",
+
+"Fatima"
+
+];
+
+
+
+function startActivity(){
+
+
+let activity =
+document.getElementById("activityText");
+
+
+
+if(!activity) return;
+
+
+
+setInterval(()=>{
+
+
+let randomName =
+names[
+Math.floor(
+Math.random()*names.length
+)
+];
+
+
+
+let randomAmount =
+[
+900,
+1500,
+3000,
+5000,
+9000
+]
+[
+Math.floor(
+Math.random()*5
+)
+];
+
+
+
+activity.innerHTML =
+`${randomName} Withdraw PKR ${randomAmount}`;
+
+
+
+},4000);
+
+
+
+}
+
+
+
+startActivity();/* =====================================
+   PART 7/8
+   WITHDRAW HISTORY SYSTEM
+===================================== */
+
+
+
+let withdrawHistory = [];
+
+
+
+async function loadWithdrawHistory(){
+
+
+
+if(!currentUser){
+
+return;
+
+}
+
+
+
+try{
+
+
+let response =
+await fetch(
+`${API}/withdraw-history?phone=${currentUser.phone}`
+);
+
+
+
+let data =
+await response.json();
+
+
+
+if(data.success){
+
+
+withdrawHistory =
+data.withdraws || [];
+
+
+
+showWithdrawHistory();
+
+
+}
+
+
+
+}catch(error){
+
+
+console.log(
+"Withdraw history error",
+error
+);
+
+
+}
+
+
+
+}
+
+
+
+
+function showWithdrawHistory(){
+
+
+
+let container =
+document.getElementById(
+"withdrawHistory"
+);
+
+
+
+if(!container){
+
+return;
+
+}
+
+
+
+
+if(withdrawHistory.length===0){
+
+
+container.innerHTML = `
+
+<div class="emptyHistory">
+
+No Withdraw History
+
+</div>
+
+`;
+
+
+return;
+
+
+}
+
+
+
+
+
+container.innerHTML =
+withdrawHistory.map(item=>{
+
+
+return `
+
+<div class="historyCard">
+
+
+<div>
+
+<b>
+${item.method}
+</b>
+
+<p>
+${item.name}
+</p>
+
+</div>
+
+
+
+<div>
+
+<h3>
+PKR ${item.amount}
+</h3>
+
+
+<span>
+
+${item.status}
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+}).join("");
+
+
+
+}
+
+
+
+
+/* =========================
+   LOAD WHEN LOGIN
+========================= */
+
+
+function afterLoginLoad(){
+
+
+loadUser();
+
+
+loadWithdrawHistory();
+
+
+}/* =====================================
+   PART 8/8
+   FINAL APP INITIALIZATION
+===================================== */
+
+
+/* =========================
+   BALANCE VISIBILITY
+========================= */
+
+
+const toggleBalance =
+document.getElementById("toggleBalance");
+
+
+let balanceVisible = true;
+
+
+
+if(toggleBalance){
+
+
+toggleBalance.onclick=()=>{
+
+
+balanceVisible =
+!balanceVisible;
+
+
+
+if(walletText){
+
+
+walletText.innerHTML =
+balanceVisible
+?
+`PKR ${wallet}`
+:
+"PKR ****";
+
+
+}
+
+
+
+};
+
+
+}
+
+
+
+
+/* =========================
+   THEME BUTTON
+========================= */
+
+
+const themeBtn =
+document.getElementById("themeBtn");
+
+
+
+if(themeBtn){
+
+
+themeBtn.onclick=()=>{
+
+
+document.body.classList.toggle(
+"darkMode"
+);
+
+
+
+};
+
+
+}
+
+
+
+
+/* =========================
+   CHECK USER SESSION
+========================= */
+
+
+window.addEventListener(
+"load",
+()=>{
+
+
+if(currentUser){
+
+
+loadUser();
+
+
+loadWithdrawHistory();
+
+
+}
+
+
+
+}
+);
+
+
+
+
+/* =========================
+   APP READY
+========================= */
+
+
+console.log(
+"Eva Earning App Loaded Successfully"
+);
