@@ -2,7 +2,18 @@ const { MongoClient } = require("mongodb");
 
 const uri = process.env.MONGO_URI;
 
-export default async function handler(req, res) {
+let client;
+
+async function connectDB() {
+  if (!client) {
+    client = new MongoClient(uri);
+    await client.connect();
+  }
+
+  return client;
+}
+
+module.exports = async function handler(req, res) {
 
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -12,9 +23,7 @@ export default async function handler(req, res) {
 
   try {
 
-    const client = new MongoClient(uri);
-
-    await client.connect();
+    const client = await connectDB();
 
     const db = client.db("eva_earning");
 
@@ -69,10 +78,7 @@ export default async function handler(req, res) {
     });
 
 
-    await client.close();
-
-
-    res.json({
+    return res.json({
 
       success: true,
 
@@ -83,7 +89,9 @@ export default async function handler(req, res) {
 
   } catch (error) {
 
-    res.status(500).json({
+    console.log(error);
+
+    return res.status(500).json({
 
       success: false,
 
@@ -93,4 +101,4 @@ export default async function handler(req, res) {
 
   }
 
-}
+};
