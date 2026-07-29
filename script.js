@@ -1107,7 +1107,7 @@ if(watchBtn){
 
 
 
-watchBtn.onclick = async()=>{
+watchBtn.onclick = ()=>{
 
 
 
@@ -1224,7 +1224,7 @@ watchBtn.onclick = async()=>{
 
 
 
-            await saveUser();
+            saveUser();
 
 
 
@@ -1537,7 +1537,7 @@ wallet -= amount;
 
 
 
-await saveUser();
+saveUser();
 
 
 
