@@ -2,113 +2,57 @@ const { MongoClient } = require("mongodb");
 
 const uri = process.env.MONGO_URI;
 
+module.exports = async function handler(req, res) {
 
-export default async function handler(req, res) {
-
-
-  if(req.method !== "GET"){
-
+  if (req.method !== "GET") {
     return res.status(405).json({
-
-      message:"Method not allowed"
-
+      success: false,
+      message: "Method not allowed"
     });
-
   }
 
+  const client = new MongoClient(uri);
 
-
-  try{
-
-
-    const client =
-    new MongoClient(uri);
-
+  try {
 
     await client.connect();
 
+    const db = client.db("eva_earning");
 
+    const withdraws = db.collection("withdraws");
 
-    const db =
-    client.db("eva_earning");
+    const { phone } = req.query;
 
-
-
-    const withdraws =
-    db.collection("withdraws");
-
-
-
-    const phone =
-    req.query.phone;
-
-
-
-    if(!phone){
-
-
+    if (!phone) {
       return res.status(400).json({
-
-        message:"Phone required"
-
+        success: false,
+        message: "Phone required"
       });
-
-
     }
 
+    const history = await withdraws
+      .find({ userPhone: phone })
+      .sort({ createdAt: -1 })
+      .toArray();
 
+    return res.json({
+      success: true,
+      withdraws: history
+    });
 
+  } catch (err) {
 
-    const history =
-    await withdraws
-    .find({
+    console.log(err);
 
-      userPhone: phone
+    return res.status(500).json({
+      success: false,
+      message: err.message
+    });
 
-    })
-    .sort({
-
-      createdAt:-1
-
-    })
-    .toArray();
-
-
-
-
+  } finally {
 
     await client.close();
 
-
-
-
-    res.json({
-
-      success:true,
-
-      withdraws:history
-
-    });
-
-
-
-
-  }catch(error){
-
-
-
-    res.status(500).json({
-
-      success:false,
-
-      message:error.message
-
-    });
-
-
-
   }
 
-
-
-}
+};
