@@ -298,40 +298,54 @@ function loadUser(){
 // =========================
 
 
-function saveUser(){
+async function saveUser(){
 
+    if(!currentUser) return;
 
-    if(!currentUser)
-    return;
-
-
-
-    currentUser.wallet =
-    wallet;
-
-
-    currentUser.reward =
-    reward;
-
-
-    currentUser.ads =
-    ads;
-
-
-    currentUser.watchedAds =
-    watched;
-
-
-    currentUser.plan =
-    plan;
-
-
+    currentUser.wallet = wallet;
+    currentUser.reward = reward;
+    currentUser.ads = ads;
+    currentUser.watchedAds = watched;
+    currentUser.plan = plan;
 
     localStorage.setItem(
         "user",
         JSON.stringify(currentUser)
     );
 
+    try{
+
+        await fetch("/api/update-user",{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+
+                phone:currentUser.phone,
+
+                wallet:wallet,
+
+                reward:reward,
+
+                ads:ads,
+
+                watchedAds:watched,
+
+                plan:plan
+
+            })
+
+        });
+
+    }catch(error){
+
+        console.log("Update User Error",error);
+
+    }
 
 }
 
@@ -1093,7 +1107,7 @@ if(watchBtn){
 
 
 
-watchBtn.onclick = ()=>{
+watchBtn.onclick = async()=>{
 
 
 
@@ -1210,7 +1224,7 @@ watchBtn.onclick = ()=>{
 
 
 
-            saveUser();
+            await saveUser();
 
 
 
@@ -1523,7 +1537,7 @@ wallet -= amount;
 
 
 
-saveUser();
+await saveUser();
 
 
 
