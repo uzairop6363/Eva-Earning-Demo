@@ -1,8 +1,8 @@
-import { MongoClient } from "mongodb";
+const { MongoClient } = require("mongodb");
 
 const uri = process.env.MONGO_URI;
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
 
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -11,7 +11,15 @@ export default async function handler(req, res) {
     });
   }
 
+  const client = new MongoClient(uri);
+
   try {
+
+    await client.connect();
+
+    const db = client.db("eva_earning");
+
+    const users = db.collection("users");
 
     const {
       phone,
@@ -22,14 +30,8 @@ export default async function handler(req, res) {
       plan
     } = req.body;
 
-    const client = new MongoClient(uri);
-
-    await client.connect();
-
-    const db = client.db("eva_earning");
-
-    await db.collection("users").updateOne(
-      { phone: phone },
+    await users.updateOne(
+      { phone },
       {
         $set: {
           wallet,
@@ -41,21 +43,23 @@ export default async function handler(req, res) {
       }
     );
 
-    await client.close();
-
     res.json({
       success: true
     });
 
-  } catch (error) {
+  } catch (err) {
 
-    console.log(error);
+    console.log(err);
 
     res.status(500).json({
       success: false,
-      message: error.message
+      message: err.message
     });
+
+  } finally {
+
+    await client.close();
 
   }
 
-}
+};
